@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { Settings, Scissors, MoveDown, Crosshair, Wrench, Search } from "lucide-react";
 
 export default function Capabilities() {
@@ -13,7 +13,7 @@ export default function Capabilities() {
     { id: "06", title: "Inspection & Quality", icon: Search, desc: "Dedicated precision surface tables and advanced testing equipment." },
   ];
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -21,7 +21,7 @@ export default function Capabilities() {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, scale: 1.05, y: -40 },
     visible: { 
       opacity: 1, 
