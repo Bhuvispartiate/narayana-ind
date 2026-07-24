@@ -34,7 +34,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-surface-light relative">
+    <section id="contact" className="py-24 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="flex items-center gap-2 mb-4">
@@ -127,8 +127,8 @@ export default function Contact() {
                   <div>
                     <h4 className="font-semibold text-slate-200 mb-1">Address</h4>
                     <p className="text-slate-300 leading-relaxed">
-                      SF. No: 173/3C, Vengur, Thiruverumbur,<br/>
-                      Tiruchirappalli, Tamil Nadu – 620013
+                      SF No.173/3C, Vengur, Kallanai Road,<br/>
+                      Thiruverumbur, Tirchy, Tamil Nadu 620013
                     </p>
                   </div>
                 </div>
@@ -156,14 +156,17 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Embedded Map Stub */}
-            <div className="h-48 bg-slate-200 rounded-2xl overflow-hidden relative border border-slate-300 shadow-sm flex items-center justify-center">
-              {/* Replace with actual iframe in production */}
-              <div className="absolute inset-0 bg-[url('https://api.maptiler.com/maps/basic-v2/static/78.78,10.79,12/800x400.png?key=placeholder')] bg-cover bg-center opacity-50 grayscale"></div>
-              <div className="z-10 bg-white px-4 py-2 rounded-md shadow-sm font-semibold text-brand-navy flex items-center gap-2">
-                <MapPin size={18} className="text-brand-orange-start" />
-                Thiruverumbur, Trichy
-              </div>
+            {/* Embedded Map */}
+            <div className="h-56 rounded-2xl overflow-hidden relative border border-slate-300 shadow-sm">
+              <iframe
+                src="https://maps.google.com/maps?q=10.813054942642852,78.76756481888016&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
             </div>
             
             {/* Certifications Trust Strip */}

@@ -21,11 +21,10 @@ export default function About() {
 
           {/* Left Column: Content (Sheet Metal Fold) */}
           <motion.div
-            initial={{ opacity: 0, rotateX: 90 }}
-            whileInView={{ opacity: 1, rotateX: 0 }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1, type: "spring", bounce: 0.3 }}
-            style={{ transformOrigin: "top", perspective: 1000 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <div className="flex items-center gap-3 mb-4">
               <div className="w-8 h-1 bg-sky-500 rounded-full"></div>
@@ -71,10 +70,10 @@ export default function About() {
           {/* Right Column: Image Hierarchical Layout */}
           <motion.div
             className="grid grid-cols-4 grid-rows-3 gap-3 sm:gap-4 w-full h-[450px] sm:h-[600px]"
-            initial={{ opacity: 0, clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)" }}
-            whileInView={{ opacity: 1, clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           >
             {/* Image 1 - Large, spans 2 cols, 2 rows */}
             <div className="relative rounded-2xl overflow-hidden group shadow-md col-span-2 row-span-2">

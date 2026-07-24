@@ -12,7 +12,7 @@ export default function Team() {
   ];
 
   return (
-    <section id="team" className="py-24 bg-white relative">
+    <section id="team" className="py-24 bg-surface-light relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="flex items-center justify-center gap-2 mb-4">
