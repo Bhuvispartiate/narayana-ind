@@ -1,0 +1,99 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { Settings, Scissors, MoveDown, Crosshair, Wrench, Search } from "lucide-react";
+
+export default function Capabilities() {
+  const capabilities = [
+    { id: "01", title: "CNC Turning & Machining Centres", icon: Settings, desc: "High-precision turning and vertical/horizontal machining for complex geometries." },
+    { id: "02", title: "Laser Cutting Systems", icon: Scissors, desc: "2KW capacity, cutting 1–16mm thickness with large bed sizes." },
+    { id: "03", title: "Hydraulic Presses", icon: MoveDown, desc: "Range from 100 to 400 ton capacities for diverse forming operations." },
+    { id: "04", title: "Robotic Welding Stations", icon: Crosshair, desc: "ABB & Panasonic robots with up to 1520mm arm radius and auto touch sensors." },
+    { id: "05", title: "Fabrication & Assembly", icon: Wrench, desc: "Complete line production for automobile and structural components." },
+    { id: "06", title: "Inspection & Quality", icon: Search, desc: "Dedicated precision surface tables and advanced testing equipment." },
+  ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, scale: 1.05, y: -40 },
+    visible: { 
+      opacity: 1, 
+      scale: 1, 
+      y: 0, 
+      transition: { 
+        type: "spring", 
+        stiffness: 400, 
+        damping: 20, 
+        mass: 2 
+      } 
+    }
+  };
+
+  return (
+    <section id="capabilities" className="py-24 bg-white relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div 
+          className="text-center max-w-3xl mx-auto mb-16"
+          initial={{ opacity: 0, scale: 1.1, y: -20 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ type: "spring", stiffness: 300, damping: 15, mass: 1.5 }}
+        >
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <div className="w-8 h-1 bg-brand-orange-start rounded-full"></div>
+            <span className="text-brand-navy font-bold uppercase tracking-wider text-sm">Capabilities</span>
+            <div className="w-8 h-1 bg-brand-orange-start rounded-full"></div>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-brand-dark mb-4">
+            Advanced Manufacturing Infrastructure
+          </h2>
+          <p className="text-lg text-slate-600">
+            Equipped with state-of-the-art machinery and heavy-duty EOT cranes across our 2,626 m² facility to handle diverse engineering challenges.
+          </p>
+        </motion.div>
+
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          {capabilities.map((cap) => (
+            <motion.div 
+              key={cap.id}
+              variants={itemVariants}
+              className="bg-surface-light rounded-xl p-8 outline outline-1 outline-slate-200/60 shadow-md hover:shadow-xl transition-all duration-300 group hover:-translate-y-1 relative overflow-hidden"
+            >
+              <div className="absolute top-0 right-0 w-24 h-24 bg-brand-blue-light/5 rounded-bl-full -mr-4 -mt-4 transition-transform duration-500 group-hover:scale-150"></div>
+              
+              <div className="flex justify-between items-start mb-6 relative z-10">
+                <div className="w-14 h-14 bg-white rounded-lg shadow-sm flex items-center justify-center text-brand-navy group-hover:text-brand-orange-start group-hover:bg-brand-navy transition-colors duration-300">
+                  <cap.icon size={28} />
+                </div>
+                <span className="text-4xl font-black text-slate-200 group-hover:text-brand-blue-light/20 transition-colors duration-300">
+                  {cap.id}
+                </span>
+              </div>
+              
+              <h3 className="text-xl font-bold text-brand-dark mb-3 relative z-10">
+                {cap.title}
+              </h3>
+              
+              <p className="text-slate-600 relative z-10">
+                {cap.desc}
+              </p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
