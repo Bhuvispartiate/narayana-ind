@@ -10,6 +10,9 @@
   
   --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+
+  /* Custom duration for nav transitions */
+  --transition-duration-400: 400ms;
 }
 
 html {
