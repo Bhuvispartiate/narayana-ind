@@ -34,12 +34,12 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 bg-white relative">
+    <section id="contact" className="py-24 bg-surface-light relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="flex items-center gap-2 mb-4">
-          <div className="w-8 h-1 bg-brand-orange-start rounded-full"></div>
-          <span className="text-brand-navy font-bold uppercase tracking-wider text-sm">Contact Us</span>
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 shadow-sm mb-4">
+          <span className="flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+          <span className="text-[10px] font-semibold text-slate-700 tracking-wide uppercase">Contact Us</span>
         </div>
         <h2 className="text-3xl md:text-4xl font-bold text-brand-dark mb-12">
           Get in Touch for Project Inquiries
@@ -177,11 +177,11 @@ export default function Contact() {
               </div>
               <div className="flex items-center gap-2">
                 <Award className="text-brand-blue-light" size={20} />
-                <span className="text-sm font-bold text-brand-dark">EN 15085-2:2020</span>
+                <span className="text-sm font-bold text-brand-dark">EN 15085-2:2020+A1:2023</span>
               </div>
               <div className="flex items-center gap-2">
                 <Award className="text-brand-blue-light" size={20} />
-                <span className="text-sm font-bold text-brand-dark">ISO 3834-2</span>
+                <span className="text-sm font-bold text-brand-dark">ISO 3834-2:2021</span>
               </div>
             </div>
           </motion.div>

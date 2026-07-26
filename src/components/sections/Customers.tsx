@@ -62,6 +62,10 @@ export default function Customers() {
       <div className="absolute inset-0 pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center relative z-10">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 shadow-sm mb-3">
+          <span className="flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+          <span className="text-[10px] font-semibold text-slate-700 tracking-wide uppercase">Our Clients</span>
+        </div>
         <h2 className="text-2xl md:text-3xl font-bold text-slate-900 tracking-wide">
           Trusted by Industry Leaders
         </h2>

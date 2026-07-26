@@ -14,7 +14,7 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   title: "Narayana Industries | Precision Manufacturing",
-  description: "Engineering Reliability. Precision Manufacturing. Trusted Quality. ISO 9001:2015, EN 15085-2:2020 & ISO 3834-2 certified.",
+  description: "Engineering Reliability. Precision Manufacturing. Trusted Quality. ISO 9001:2015, EN 15085-2:2020+A1:2023 & ISO 3834-2:2021 certified.",
 };
 
 export default function RootLayout({

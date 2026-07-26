@@ -66,14 +66,14 @@ export default function Footer() {
               <div className="flex gap-3">
                 <Award className="text-sky-500 shrink-0" size={20} />
                 <div>
-                  <p className="font-medium text-white">EN 15085-2:2020</p>
+                  <p className="font-medium text-white">EN 15085-2:2020+A1:2023</p>
                   <p className="text-xs mt-1">Welding of Railway Vehicles</p>
                 </div>
               </div>
               <div className="flex gap-3">
                 <Award className="text-sky-500 shrink-0" size={20} />
                 <div>
-                  <p className="font-medium text-white">ISO 3834-2</p>
+                  <p className="font-medium text-white">ISO 3834-2:2021</p>
                   <p className="text-xs mt-1">Quality Requirements for Welding</p>
                 </div>
               </div>

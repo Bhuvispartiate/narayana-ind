@@ -12,13 +12,12 @@ export default function Team() {
   ];
 
   return (
-    <section id="team" className="py-24 bg-surface-light relative">
+    <section id="team" className="py-24 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="w-8 h-1 bg-brand-orange-start rounded-full"></div>
-            <span className="text-brand-navy font-bold uppercase tracking-wider text-sm">Key Contacts</span>
-            <div className="w-8 h-1 bg-brand-orange-start rounded-full"></div>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 shadow-sm mb-4">
+            <span className="flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+            <span className="text-[10px] font-semibold text-slate-700 tracking-wide uppercase">Key Contacts</span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-brand-dark mb-4">
             Our Leadership Team

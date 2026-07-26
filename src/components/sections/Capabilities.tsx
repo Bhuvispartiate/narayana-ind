@@ -37,30 +37,29 @@ export default function Capabilities() {
   };
 
   return (
-    <section id="capabilities" className="py-24 bg-white relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="capabilities" className="py-10 lg:py-12 bg-white relative min-h-[85vh] max-h-[100vh] flex items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <motion.div 
-          className="text-center max-w-3xl mx-auto mb-16"
+          className="text-center max-w-3xl mx-auto mb-8"
           initial={{ opacity: 0, scale: 1.1, y: -20 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ type: "spring", stiffness: 300, damping: 15, mass: 1.5 }}
         >
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="w-8 h-1 bg-brand-orange-start rounded-full"></div>
-            <span className="text-brand-navy font-bold uppercase tracking-wider text-sm">Capabilities</span>
-            <div className="w-8 h-1 bg-brand-orange-start rounded-full"></div>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 shadow-sm mb-3">
+            <span className="flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+            <span className="text-[10px] font-semibold text-slate-700 tracking-wide uppercase">Capabilities</span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-brand-dark mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-brand-dark mb-3">
             Advanced Manufacturing Infrastructure
           </h2>
-          <p className="text-lg text-slate-600">
+          <p className="text-base text-slate-600">
             Equipped with state-of-the-art machinery and heavy-duty EOT cranes across our 2,626 m² facility to handle diverse engineering challenges.
           </p>
         </motion.div>
 
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -70,24 +69,24 @@ export default function Capabilities() {
             <motion.div 
               key={cap.id}
               variants={itemVariants}
-              className="bg-surface-light rounded-xl p-8 outline outline-1 outline-slate-200/60 shadow-md hover:shadow-xl transition-all duration-300 group hover:-translate-y-1 relative overflow-hidden"
+              className="bg-white rounded-xl p-5 lg:p-6 outline outline-1 outline-slate-200/60 shadow-md hover:shadow-xl transition-all duration-300 group hover:-translate-y-1 relative overflow-hidden"
             >
-              <div className="absolute top-0 right-0 w-24 h-24 bg-brand-blue-light/5 rounded-bl-full -mr-4 -mt-4 transition-transform duration-500 group-hover:scale-150"></div>
+              <div className="absolute top-0 right-0 w-20 h-20 bg-brand-blue-light/5 rounded-bl-full -mr-4 -mt-4 transition-transform duration-500 group-hover:scale-150"></div>
               
-              <div className="flex justify-between items-start mb-6 relative z-10">
-                <div className="w-14 h-14 bg-white rounded-lg shadow-sm flex items-center justify-center text-brand-navy group-hover:text-brand-orange-start group-hover:bg-brand-navy transition-colors duration-300">
-                  <cap.icon size={28} />
+              <div className="flex justify-between items-start mb-4 relative z-10">
+                <div className="w-12 h-12 bg-slate-50 rounded-lg shadow-sm flex items-center justify-center text-brand-navy group-hover:text-brand-orange-start group-hover:bg-brand-navy transition-colors duration-300">
+                  <cap.icon size={24} />
                 </div>
-                <span className="text-4xl font-black text-slate-200 group-hover:text-brand-blue-light/20 transition-colors duration-300">
+                <span className="text-3xl font-black text-slate-200 group-hover:text-brand-blue-light/20 transition-colors duration-300">
                   {cap.id}
                 </span>
               </div>
               
-              <h3 className="text-xl font-bold text-brand-dark mb-3 relative z-10">
+              <h3 className="text-lg font-bold text-brand-dark mb-2 relative z-10">
                 {cap.title}
               </h3>
               
-              <p className="text-slate-600 relative z-10">
+              <p className="text-sm text-slate-600 relative z-10">
                 {cap.desc}
               </p>
             </motion.div>

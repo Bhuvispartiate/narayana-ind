@@ -7,8 +7,8 @@ import { Award, CheckCircle, Settings, Wrench } from "lucide-react";
 export default function About() {
   const certifications = [
     { name: "ISO 9001:2015", icon: "/images/cert-1.svg" },
-    { name: "EN 15085-2:2020", icon: "/images/cert-2.svg" },
-    { name: "ISO 3834-2", icon: "/images/cert-3.svg" },
+    { name: "EN 15085-2:2020+A1:2023", icon: "/images/cert-2.svg" },
+    { name: "ISO 3834-2:2021", icon: "/images/cert-3.svg" },
   ];
 
   return (
@@ -26,9 +26,9 @@ export default function About() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-1 bg-sky-500 rounded-full"></div>
-              <span className="text-sky-600 font-bold uppercase tracking-wider text-sm">About Us</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 shadow-sm mb-4">
+              <span className="flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+              <span className="text-[10px] font-semibold text-slate-700 tracking-wide uppercase">About Us</span>
             </div>
 
             <h2 className="text-3xl md:text-4xl font-bold text-brand-dark mb-6 leading-tight">

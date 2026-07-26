@@ -4,6 +4,7 @@ import About from "@/components/sections/About";
 import Stats from "@/components/sections/Stats";
 import Capabilities from "@/components/sections/Capabilities";
 import QualityAssurance from "@/components/sections/QualityAssurance";
+import CertifiedExcellence from "@/components/sections/CertifiedExcellence";
 import ServicesPortfolio from "@/components/sections/ServicesPortfolio";
 import Customers from "@/components/sections/Customers";
 import Team from "@/components/sections/Team";
@@ -21,6 +22,7 @@ export default function Home() {
         <Stats />
         <Capabilities />
         <QualityAssurance />
+        <CertifiedExcellence />
         <ServicesPortfolio />
         <Team />
         <Contact />

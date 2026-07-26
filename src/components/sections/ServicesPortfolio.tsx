@@ -24,7 +24,7 @@ export default function ServicesPortfolio() {
       title: "Railway Air Spring System",
       category: "Railway",
       image: "/images/product-2.svg",
-      desc: "Precision metal parts for railway air spring systems compliant with EN 15085-2:2020.",
+      desc: "Precision metal parts for railway air spring systems compliant with EN 15085-2:2020+A1:2023.",
     },
     {
       id: 3,
@@ -52,7 +52,7 @@ export default function ServicesPortfolio() {
 
 
   return (
-    <section id="products" className="py-24 bg-white relative">
+    <section id="products" className="py-24 bg-surface-light relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6"
@@ -62,9 +62,9 @@ export default function ServicesPortfolio() {
           transition={{ type: "spring", stiffness: 400, damping: 20, mass: 2 }}
         >
           <div className="max-w-2xl">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-1 bg-brand-orange-start rounded-full"></div>
-              <span className="text-brand-navy font-bold uppercase tracking-wider text-sm">Our Products</span>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 shadow-sm mb-4">
+              <span className="flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+              <span className="text-[10px] font-semibold text-slate-700 tracking-wide uppercase">Our Products</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-brand-dark mb-4">
               Services & Product Portfolio
