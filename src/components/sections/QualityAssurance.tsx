@@ -16,7 +16,7 @@ export default function QualityAssurance() {
   // Spread the animations from 0 to 0.85. The final 0.15 gives a short natural pause before scrolling away.
   
   // Step 1: Pops up
-  const step1Scale = useTransform(scrollYProgress, [0, 0.1], [0.5, 1], { clamp: true });
+  const step1Scale = useTransform(scrollYProgress, [0, 0.1], [0.8, 1], { clamp: true });
 
   // Step 2: Slides in from the right
   const step2X = useTransform(scrollYProgress, [0.1, 0.35], ["100vw", "0vw"], { clamp: true });
@@ -62,9 +62,8 @@ export default function QualityAssurance() {
 
   return (
     <section id="quality" className="bg-surface-light relative">
-      {/* Sticky Scroll Container: height determines scroll duration */}
-      <div ref={targetRef} className="h-[300vh] relative">
-        <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden py-12 md:py-24">
+      <div ref={targetRef} className="h-auto md:h-[300vh] relative">
+        <div className="relative md:sticky top-0 min-h-[100dvh] md:h-screen flex flex-col justify-center overflow-hidden py-16 md:py-24">
           
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div className="text-center max-w-3xl mx-auto mb-12 md:mb-20">

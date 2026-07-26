@@ -37,7 +37,7 @@ export default function Capabilities() {
   };
 
   return (
-    <section id="capabilities" className="py-10 lg:py-12 bg-white relative min-h-[85vh] max-h-[100vh] flex items-center">
+    <section id="capabilities" className="py-16 lg:py-12 bg-white relative lg:min-h-[85vh] lg:max-h-[100vh] lg:flex lg:items-center">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <motion.div 
           className="text-center max-w-3xl mx-auto mb-8"
