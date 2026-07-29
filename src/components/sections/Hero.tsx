@@ -176,7 +176,7 @@ export default function Hero() {
             <div className="relative w-full max-w-lg lg:max-w-none rounded-3xl p-3 bg-white border border-slate-200/80 shadow-[0_20px_50px_rgba(15,23,42,0.08)]">
               
               {/* Main Image Frame */}
-              <div className="relative h-[320px] sm:h-[400px] lg:h-[460px] w-full rounded-2xl overflow-hidden group">
+              <div className="relative h-[320px] sm:h-[400px] lg:h-[460px] w-full rounded-2xl overflow-hidden group mb-3 sm:mb-0">
                 <Image
                   src="/images/Hero-Image.jpg"
                   alt="Narayana Industries Heavy Manufacturing Facility"
@@ -188,9 +188,10 @@ export default function Hero() {
                 
                 {/* Soft Bottom Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent pointer-events-none" />
+              </div>
 
-                {/* Bottom Card Strip inside Image */}
-                <div className="absolute bottom-4 left-4 right-4 p-2 rounded-xl bg-white/95 backdrop-blur-md border border-slate-100 shadow-lg grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-slate-200/60 z-10">
+              {/* Card Strip (stacked on mobile, overlaid on desktop) */}
+              <div className="relative sm:absolute sm:bottom-7 sm:left-7 sm:right-7 p-2 rounded-xl bg-slate-50 sm:bg-white/95 sm:backdrop-blur-md border border-slate-200 sm:border-slate-100 shadow-sm sm:shadow-lg grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-slate-200/60 z-10">
                   
                   {/* Metric 1 */}
                   <div className="flex items-center gap-3 p-2 sm:px-3">
@@ -224,7 +225,6 @@ export default function Hero() {
                       <p className="text-[10px] text-slate-500 truncate">Micron-level Accuracy</p>
                     </div>
                   </div>
-                </div>
               </div>
             </div>
 

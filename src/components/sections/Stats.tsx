@@ -7,13 +7,13 @@ import { Maximize, Settings, Truck, ShieldCheck } from "lucide-react";
 const Counter = ({ value, label, icon: Icon, inView }: { value: string, label: string, icon: any, inView: boolean }) => {
   // A simple representation for the stat tile
   return (
-    <div className="flex flex-col items-center justify-center p-6 text-center border-b sm:border-b-0 sm:border-r border-white/10 last:border-0 relative group">
+    <div className="flex flex-col items-center justify-center p-3 sm:p-6 text-center sm:border-r border-white/10 relative group h-full">
       <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-      <Icon className="text-brand-orange-start mb-3" size={28} />
-      <div className="text-3xl md:text-4xl font-bold text-white mb-1">
+      <Icon className="text-brand-orange-start mb-2 sm:mb-3 h-6 w-6 sm:h-[28px] sm:w-[28px]" />
+      <div className="text-xl sm:text-3xl md:text-4xl font-bold text-white mb-1">
         {value}
       </div>
-      <div className="text-sm text-slate-300 font-medium">{label}</div>
+      <div className="text-[10px] sm:text-sm text-slate-300 font-medium leading-tight">{label}</div>
     </div>
   );
 };
@@ -32,7 +32,7 @@ export default function Stats() {
   return (
     <section ref={ref} className="bg-brand-navy border-y-4 border-sky-500 relative z-20 shadow-xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-0">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}

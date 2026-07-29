@@ -40,8 +40,8 @@ export default function Capabilities() {
     <section id="capabilities" className="py-16 lg:py-12 bg-white relative lg:min-h-[85vh] lg:max-h-[100vh] lg:flex lg:items-center">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <motion.div 
-          className="text-center max-w-3xl mx-auto mb-8"
-          initial={{ opacity: 0, scale: 1.1, y: -20 }}
+          className="text-center max-w-3xl mx-auto mb-16"
+          initial={{ opacity: 0, scale: 1.1, y: 20 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ type: "spring", stiffness: 300, damping: 15, mass: 1.5 }}

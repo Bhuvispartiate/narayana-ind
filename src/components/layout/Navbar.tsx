@@ -139,11 +139,10 @@ export default function Navbar() {
                   willChange: "opacity, transform",
                   opacity: isScrolled ? 0 : 1,
                   transform: isScrolled ? "translateX(10px)" : "translateX(0)",
-                  pointerEvents: isScrolled ? "none" : "auto",
                 }}
                 className={clsx(
-                  "group-hover:!opacity-100 group-hover:!translate-x-0",
-                  isScrolled ? "group-hover:pointer-events-auto" : ""
+                  "group-hover:!opacity-100 group-hover:!translate-x-0 group-hover:!pointer-events-auto",
+                  isScrolled ? "pointer-events-none" : "pointer-events-auto"
                 )}
               >
                 <Link
@@ -163,11 +162,10 @@ export default function Navbar() {
                 willChange: "opacity, transform",
                 opacity: isScrolled ? 0 : 1,
                 transform: isScrolled ? "translateX(10px)" : "translateX(0)",
-                pointerEvents: isScrolled ? "none" : "auto",
               }}
               className={clsx(
-                "group-hover:!opacity-100 group-hover:!translate-x-0",
-                isScrolled ? "group-hover:pointer-events-auto" : ""
+                "group-hover:!opacity-100 group-hover:!translate-x-0 group-hover:!pointer-events-auto",
+                isScrolled ? "pointer-events-none" : "pointer-events-auto"
               )}
             >
               <a

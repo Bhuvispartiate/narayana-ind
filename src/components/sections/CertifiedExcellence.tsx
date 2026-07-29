@@ -92,12 +92,12 @@ export default function CertifiedExcellence() {
           </motion.div>
 
           {/* Certificates Grid - Designed to fit in one frame */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6 w-full">
+          <div className="grid grid-cols-3 gap-2 sm:gap-4 lg:gap-6 w-full">
             {certificates.map((cert, index) => (
               <motion.div 
                 key={index}
                 variants={itemVariants}
-                className="group relative flex flex-col bg-white rounded-3xl p-4 lg:p-5 border border-slate-200 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 ease-out"
+                className="group relative flex flex-col bg-white rounded-xl sm:rounded-3xl p-2 sm:p-4 lg:p-5 border border-slate-200 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 ease-out"
               >
                 {/* Certificate Image Frame */}
                 {/* Using a fixed aspect ratio suitable for A4 documents (approx 1:1.414).
@@ -128,11 +128,11 @@ export default function CertifiedExcellence() {
 
                 {/* Certificate Details */}
                 <div className="flex flex-col items-center text-center mt-auto">
-                  <div className="w-10 h-10 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center mb-2 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                    {cert.icon}
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center mb-1 sm:mb-2 shadow-sm group-hover:scale-110 transition-transform duration-300">
+                    <div className="scale-75 sm:scale-100">{cert.icon}</div>
                   </div>
-                  <h3 className="text-base font-bold text-slate-900 mb-0.5">{cert.title}</h3>
-                  <p className="text-xs font-medium text-slate-500">{cert.subtitle}</p>
+                  <h3 className="text-[10px] sm:text-base font-bold text-slate-900 mb-0.5 leading-tight">{cert.title}</h3>
+                  <p className="text-[8px] sm:text-xs font-medium text-slate-500 leading-tight">{cert.subtitle}</p>
                 </div>
               </motion.div>
             ))}

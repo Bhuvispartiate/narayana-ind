@@ -49,8 +49,8 @@ export default function Contact() {
           
           {/* Left: Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             className="bg-white p-8 rounded-2xl shadow-md outline outline-1 outline-slate-200/60 flex flex-col h-full"
           >
@@ -111,8 +111,8 @@ export default function Contact() {
 
           {/* Right: Company Details */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             className="flex flex-col h-full"
           >

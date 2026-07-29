@@ -56,7 +56,7 @@ export default function ServicesPortfolio() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6"
-          initial={{ opacity: 0, scale: 1.05, y: -40 }}
+          initial={{ opacity: 0, scale: 1.05, y: 40 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ type: "spring", stiffness: 400, damping: 20, mass: 2 }}
