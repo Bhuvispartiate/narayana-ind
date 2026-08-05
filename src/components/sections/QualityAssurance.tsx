@@ -76,8 +76,8 @@ export default function QualityAssurance() {
                 <span className="flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
                 <span className="text-[10px] font-semibold text-slate-700 tracking-wide uppercase">Quality Assurance</span>
               </div>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-brand-dark mb-4">
-                Uncompromising Quality
+              <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-5 tracking-tight">
+                Uncompromising <span className="bg-gradient-to-r from-sky-600 to-indigo-600 bg-clip-text text-transparent">Quality</span>
               </h2>
               <p className="text-base md:text-lg text-slate-600">
                 {isMobile

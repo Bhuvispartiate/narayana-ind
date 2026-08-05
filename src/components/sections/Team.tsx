@@ -1,14 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Phone, User } from "lucide-react";
+import { User } from "lucide-react";
+import Image from "next/image";
 
 export default function Team() {
   const teamMembers = [
-    { name: "Mr. Sekar N", role: "Partner", phone: "+919003950427", displayPhone: "90039 50427" },
-    { name: "Mr. Manimurugan R", role: "GM", phone: "+919003950425", displayPhone: "90039 50425" },
-    { name: "Mr. Gnanasekaran K", role: "GM", phone: "+919965522554", displayPhone: "99655 22554" },
-    { name: "Mr. Santhosh S", role: "Techno Commercial Engineer", phone: "+917904708300", displayPhone: "79047 08300" },
+    { name: "Mr. Sekar N", role: "Partner", image: "/images/ProfileImages/nSekar.jpg" },
+    { name: "Mr. Manimurugan R", role: "GM" },
+    { name: "Mr. Gnanasekaran K", role: "GM", image: "/images/ProfileImages/Gnanasekar.jpg" },
+    { name: "Mr. Santhosh S", role: "Techno Commercial Engineer" },
   ];
 
   return (
@@ -19,8 +20,8 @@ export default function Team() {
             <span className="flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
             <span className="text-[10px] font-semibold text-slate-700 tracking-wide uppercase">Key Contacts</span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-brand-dark mb-4">
-            Our Leadership Team
+          <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-5 tracking-tight">
+            Our Leadership <span className="bg-gradient-to-r from-sky-600 to-indigo-600 bg-clip-text text-transparent">Team</span>
           </h2>
           <p className="text-lg text-slate-600">
             Get in touch with our management and commercial engineering experts.
@@ -31,26 +32,44 @@ export default function Team() {
           {teamMembers.map((member, index) => (
             <motion.div
               key={member.name}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-surface-light rounded-2xl p-6 text-center outline outline-1 outline-slate-200/60 shadow-md hover:shadow-xl hover:outline-brand-blue-light/30 transition-all duration-300 group"
+              transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+              className="relative group rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 bg-slate-100"
             >
-              <div className="w-24 h-24 mx-auto bg-slate-200 rounded-full mb-6 flex items-center justify-center overflow-hidden border-4 border-white shadow-sm relative group-hover:border-sky-500 transition-colors">
-                <User size={40} className="text-slate-400 group-hover:text-brand-orange-start transition-colors" />
+              {/* Large Portrait Image Placeholder or Actual Image */}
+              <div className="aspect-[3/4] w-full bg-slate-200 relative overflow-hidden flex flex-col items-center justify-center">
+                {member.image ? (
+                  <Image 
+                    src={member.image} 
+                    alt={member.name} 
+                    fill 
+                    priority={index < 4}
+                    className="object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  />
+                ) : (
+                  <>
+                    <User size={80} strokeWidth={1} className="text-slate-400 opacity-40 group-hover:scale-110 group-hover:text-sky-500 transition-all duration-700 ease-out" />
+                    <span className="text-xs font-semibold tracking-widest uppercase text-slate-400 mt-4 opacity-50 group-hover:opacity-100 group-hover:text-sky-600 transition-all duration-500">
+                      Image Placeholder
+                    </span>
+                  </>
+                )}
+                
+                {/* Gradient Overlay for Text Readability - Only at the bottom */}
+                <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-slate-900/90 to-transparent pointer-events-none" />
+              </div>
+
+              {/* Content Floating on Bottom */}
+              <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col items-center text-center transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                <h3 className="text-xl font-bold text-white mb-1">{member.name}</h3>
+                <p className="text-sm font-medium text-sky-400 mb-2">{member.role}</p>
               </div>
               
-              <h3 className="text-lg font-bold text-brand-dark mb-1">{member.name}</h3>
-              <p className="text-sm font-medium text-brand-blue-light mb-6">{member.role}</p>
-              
-              <a 
-                href={`tel:${member.phone}`}
-                className="inline-flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-white text-slate-700 hover:text-brand-navy hover:bg-brand-blue-light/10 border border-slate-200 rounded-lg text-sm font-semibold transition-colors"
-              >
-                <Phone size={16} className="text-brand-navy" />
-                {member.displayPhone}
-              </a>
+              {/* Accent Border Glow */}
+              <div className="absolute inset-0 border-2 border-transparent group-hover:border-sky-500/30 rounded-3xl transition-colors duration-500 pointer-events-none" />
             </motion.div>
           ))}
         </div>

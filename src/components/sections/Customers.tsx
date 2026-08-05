@@ -66,8 +66,8 @@ export default function Customers() {
           <span className="flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
           <span className="text-[10px] font-semibold text-slate-700 tracking-wide uppercase">Our Clients</span>
         </div>
-        <h2 className="text-2xl md:text-3xl font-bold text-slate-900 tracking-wide">
-          Trusted by Industry Leaders
+        <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-5 tracking-tight">
+          Trusted by <span className="bg-gradient-to-r from-sky-600 to-indigo-600 bg-clip-text text-transparent">Industry Leaders</span>
         </h2>
       </div>
 

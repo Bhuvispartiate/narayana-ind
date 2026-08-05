@@ -50,8 +50,8 @@ export default function Capabilities() {
             <span className="flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
             <span className="text-[10px] font-semibold text-slate-700 tracking-wide uppercase">Capabilities</span>
           </div>
-          <h2 className="text-2xl md:text-3xl font-bold text-brand-dark mb-3">
-            Advanced Manufacturing Infrastructure
+          <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-5 tracking-tight">
+            Advanced Manufacturing <span className="bg-gradient-to-r from-sky-600 to-indigo-600 bg-clip-text text-transparent">Infrastructure</span>
           </h2>
           <p className="text-base text-slate-600">
             Equipped with state-of-the-art machinery and heavy-duty EOT cranes across our 2,626 m² facility to handle diverse engineering challenges.

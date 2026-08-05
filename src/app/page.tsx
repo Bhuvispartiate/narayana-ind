@@ -3,6 +3,7 @@ import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Stats from "@/components/sections/Stats";
 import Capabilities from "@/components/sections/Capabilities";
+import Gallery from "@/components/sections/Gallery";
 import QualityAssurance from "@/components/sections/QualityAssurance";
 import CertifiedExcellence from "@/components/sections/CertifiedExcellence";
 import ServicesPortfolio from "@/components/sections/ServicesPortfolio";
@@ -21,6 +22,7 @@ export default function Home() {
         <About />
         <Stats />
         <Capabilities />
+        <Gallery />
         <QualityAssurance />
         <CertifiedExcellence />
         <ServicesPortfolio />

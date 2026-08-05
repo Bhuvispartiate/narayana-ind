@@ -29,6 +29,7 @@ export default function Navbar() {
   const navLinks = [
     { name: "About", href: "#about" },
     { name: "Capabilities", href: "#capabilities" },
+    { name: "Gallery", href: "#gallery" },
     { name: "Quality", href: "#quality" },
     { name: "Products", href: "#products" },
     { name: "Customers", href: "#customers" },
@@ -48,7 +49,7 @@ export default function Navbar() {
       )}
       style={{ willChange: "background-color" }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-end items-center relative min-h-[48px] w-full">
 
           {/* ── Logo ── */}
@@ -58,7 +59,7 @@ export default function Navbar() {
               "absolute top-1/2 -translate-y-1/2 flex items-center gap-2 z-10",
               "transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]",
               isScrolled
-                ? "left-0 md:left-1/2 md:-translate-x-1/2 md:group-hover:left-0 md:group-hover:translate-x-0"
+                ? "left-0 md:left-1/2 md:-translate-x-1/2 md:group-hover:-left-4 md:group-hover:-translate-x-4"
                 : "left-0 translate-x-0"
             )}
             style={{ willChange: "left, transform" }}

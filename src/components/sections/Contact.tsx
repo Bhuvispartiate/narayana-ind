@@ -41,8 +41,8 @@ export default function Contact() {
           <span className="flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
           <span className="text-[10px] font-semibold text-slate-700 tracking-wide uppercase">Contact Us</span>
         </div>
-        <h2 className="text-3xl md:text-4xl font-bold text-brand-dark mb-12">
-          Get in Touch for Project Inquiries
+        <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-8 tracking-tight">
+          Get in Touch for <span className="bg-gradient-to-r from-sky-600 to-indigo-600 bg-clip-text text-transparent">Project Inquiries</span>
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">

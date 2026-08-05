@@ -83,7 +83,7 @@ export default function CertifiedExcellence() {
               <span className="flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
               <span className="text-[10px] font-semibold text-slate-700 tracking-wide uppercase">Globally Recognized</span>
             </div>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight mb-2">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-5 tracking-tight">
               Certified <span className="bg-gradient-to-r from-sky-600 to-indigo-600 bg-clip-text text-transparent">Excellence</span>
             </h2>
             <p className="text-slate-600 text-sm md:text-base">

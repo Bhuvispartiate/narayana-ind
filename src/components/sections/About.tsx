@@ -6,9 +6,9 @@ import { Award, CheckCircle, Settings, Wrench } from "lucide-react";
 
 export default function About() {
   const certifications = [
-    { name: "ISO 9001:2015", icon: "/images/cert-1.svg" },
-    { name: "EN 15085-2:2020+A1:2023", icon: "/images/cert-2.svg" },
-    { name: "ISO 3834-2:2021", icon: "/images/cert-3.svg" },
+    { name: "ISO 9001:2015", icon: "/images/Certificates/cert1.png" },
+    { name: "EN 15085-2:2020+A1:2023", icon: "/images/Certificates/cert2.png" },
+    { name: "ISO 3834-2:2021", icon: "/images/Certificates/cert3.png" },
   ];
 
   return (
@@ -31,8 +31,8 @@ export default function About() {
               <span className="text-[10px] font-semibold text-slate-700 tracking-wide uppercase">About Us</span>
             </div>
 
-            <h2 className="text-3xl md:text-4xl font-bold text-brand-dark mb-6 leading-tight">
-              A Legacy of Precision & Reliability in Manufacturing
+            <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-5 tracking-tight">
+              A Legacy of <span className="bg-gradient-to-r from-sky-600 to-indigo-600 bg-clip-text text-transparent">Precision & Reliability</span> in Manufacturing
             </h2>
 
             <div className="space-y-4 text-slate-600 text-lg mb-8 leading-relaxed">
@@ -78,9 +78,10 @@ export default function About() {
             {/* Image 1 - Large, spans 2 cols, 2 rows */}
             <div className="relative rounded-2xl overflow-hidden group shadow-md col-span-2 row-span-2">
               <Image
-                src="/images/about4.png"
+                src="/images/AboutImages/about4.png"
                 alt="Factory Floor"
                 fill
+                priority
                 sizes="(max-width: 768px) 50vw, 33vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
@@ -90,7 +91,7 @@ export default function About() {
             {/* Image 2 - small, 1 col, 1 row */}
             <div className="relative rounded-2xl overflow-hidden group shadow-md col-span-1 row-span-1">
               <Image
-                src="/images/about2.png"
+                src="/images/AboutImages/about2.png"
                 alt="Machining"
                 fill
                 sizes="(max-width: 768px) 25vw, 16vw"
@@ -101,7 +102,7 @@ export default function About() {
             {/* Image 3 - small, 1 col, 1 row */}
             <div className="relative rounded-2xl overflow-hidden group shadow-md col-span-1 row-span-1">
               <Image
-                src="/images/about3.png"
+                src="/images/AboutImages/about3.png"
                 alt="Quality Control"
                 fill
                 sizes="(max-width: 768px) 25vw, 16vw"
@@ -112,7 +113,7 @@ export default function About() {
             {/* Image 4 - medium, spans 2 cols, 1 row */}
             <div className="relative rounded-2xl overflow-hidden group shadow-md col-span-2 row-span-1">
               <Image
-                src="/images/about5.png"
+                src="/images/AboutImages/about5.png"
                 alt="Manufacturing Process"
                 fill
                 sizes="(max-width: 768px) 50vw, 33vw"
@@ -141,9 +142,10 @@ export default function About() {
             {/* Image 5 - wide, spans 3 cols, 1 row */}
             <div className="relative rounded-2xl overflow-hidden group shadow-md col-span-3 row-span-1">
               <Image
-                src="/images/about1.png"
+                src="/images/AboutImages/about1.png"
                 alt="Heavy Engineering"
                 fill
+                priority
                 sizes="(max-width: 768px) 50vw, 33vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
