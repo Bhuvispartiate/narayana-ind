@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${jakarta.variable} ${outfit.variable} h-full antialiased scroll-smooth overflow-x-clip`}
+      className={`${jakarta.variable} ${outfit.variable} h-full antialiased overflow-x-clip`}
     >
       <body className="min-h-full flex flex-col font-sans overflow-x-clip">{children}</body>
     </html>

@@ -10,6 +10,9 @@ export default function Team() {
     { name: "Mr. Manimurugan R", role: "GM" },
     { name: "Mr. Gnanasekaran K", role: "GM", image: "/images/ProfileImages/Gnanasekar.jpg" },
     { name: "Mr. Santhosh S", role: "Techno Commercial Engineer" },
+    { name: "Priyal", role: "Management" },
+    { name: "QC Team", role: "Quality Control", wide: true },
+    { name: "Admin & HR Team", role: "Administration & Human Resources", wide: true },
   ];
 
   return (
@@ -28,7 +31,7 @@ export default function Team() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="flex flex-wrap justify-center gap-8">
           {teamMembers.map((member, index) => (
             <motion.div
               key={member.name}
@@ -36,10 +39,14 @@ export default function Team() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
-              className="relative group rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 bg-slate-100"
+              className={`relative group rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 bg-slate-100 ${
+                member.wide 
+                  ? "w-full sm:w-full lg:w-[calc(40%-1rem)]" 
+                  : "w-full sm:w-[calc(50%-1rem)] lg:w-[calc(20%-1.6rem)]"
+              }`}
             >
               {/* Large Portrait Image Placeholder or Actual Image */}
-              <div className="aspect-[3/4] w-full bg-slate-200 relative overflow-hidden flex flex-col items-center justify-center">
+              <div className={`${member.wide ? "aspect-video" : "aspect-[3/4]"} w-full bg-slate-200 relative overflow-hidden flex flex-col items-center justify-center`}>
                 {member.image ? (
                   <Image 
                     src={member.image} 

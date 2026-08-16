@@ -92,22 +92,16 @@ export default function CertifiedExcellence() {
           </motion.div>
 
           {/* Certificates Grid - Designed to fit in one frame */}
-          <div className="grid grid-cols-3 gap-2 sm:gap-4 lg:gap-6 w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 w-full">
             {certificates.map((cert, index) => (
               <motion.div 
                 key={index}
                 variants={itemVariants}
-                className="group relative flex flex-col bg-white rounded-xl sm:rounded-3xl p-2 sm:p-4 lg:p-5 border border-slate-200 shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 ease-out"
+                className="relative group rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 bg-slate-100 cursor-pointer"
+                onClick={() => setSelectedImage(cert.image)}
               >
                 {/* Certificate Image Frame */}
-                {/* Using a fixed aspect ratio suitable for A4 documents (approx 1:1.414).
-                    Setting max-height to ensure they don't stretch the screen too much vertically. */}
-                <div 
-                  className="relative w-[80%] sm:w-[75%] lg:w-[70%] mx-auto aspect-[1/1.4] max-h-[450px] md:max-h-[35vh] lg:max-h-[40vh] rounded-xl overflow-hidden bg-slate-100 border border-slate-200 mb-4 flex items-center justify-center group-hover:border-sky-300 transition-colors duration-300 cursor-pointer"
-                  onClick={() => setSelectedImage(cert.image)}
-                >
-                  
-                  {/* Visual placeholder text if image fails to load */}
+                <div className="aspect-[3/4] w-full bg-slate-200 relative overflow-hidden flex flex-col items-center justify-center">
                   <span className="absolute text-slate-300 font-semibold uppercase tracking-widest text-sm z-0">
                     Image Placeholder
                   </span>
@@ -117,23 +111,24 @@ export default function CertifiedExcellence() {
                     alt={cert.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover md:object-contain z-10 transition-transform duration-500 group-hover:scale-[1.03]"
-                    // Using object-contain ensures the whole certificate is visible without cutting
-                    // if you prefer it to fill the box, you can switch back to object-cover
+                    className="object-cover object-top z-10 transition-transform duration-700 ease-out group-hover:scale-105"
                   />
                   
-                  {/* Subtle glare effect */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/20 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-20 pointer-events-none transform -translate-x-full group-hover:translate-x-full"></div>
+                  {/* Gradient Overlay for Text Readability - Only at the bottom */}
+                  <div className="absolute bottom-0 left-0 right-0 h-2/3 bg-gradient-to-t from-slate-900/95 via-slate-900/60 to-transparent z-20 pointer-events-none" />
                 </div>
 
-                {/* Certificate Details */}
-                <div className="flex flex-col items-center text-center mt-auto">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl sm:rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center mb-1 sm:mb-2 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                    <div className="scale-75 sm:scale-100">{cert.icon}</div>
+                {/* Content Floating on Bottom */}
+                <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 flex flex-col items-center text-center transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500 ease-out z-30 pointer-events-none">
+                  <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center mb-3 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    {cert.icon}
                   </div>
-                  <h3 className="text-[10px] sm:text-base font-bold text-slate-900 mb-0.5 leading-tight">{cert.title}</h3>
-                  <p className="text-[8px] sm:text-xs font-medium text-slate-500 leading-tight">{cert.subtitle}</p>
+                  <h3 className="text-lg sm:text-xl font-bold text-white mb-1 leading-tight">{cert.title}</h3>
+                  <p className="text-xs sm:text-sm font-medium text-sky-300 leading-tight">{cert.subtitle}</p>
                 </div>
+                
+                {/* Accent Border Glow */}
+                <div className="absolute inset-0 border-2 border-transparent group-hover:border-sky-500/30 rounded-3xl transition-colors duration-500 pointer-events-none z-40" />
               </motion.div>
             ))}
           </div>
