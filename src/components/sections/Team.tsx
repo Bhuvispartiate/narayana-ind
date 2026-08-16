@@ -11,8 +11,8 @@ export default function Team() {
     { name: "Mr. Gnanasekaran K", role: "GM", image: "/images/ProfileImages/Gnanasekar.jpg" },
     { name: "Mr. Santhosh S", role: "Techno Commercial Engineer" },
     { name: "Priyal", role: "Management" },
-    { name: "QC Team", role: "Quality Control", wide: true },
-    { name: "Admin & HR Team", role: "Administration & Human Resources", wide: true },
+    { name: "QC Team", role: "Quality Control", image: "/images/ProfileImages/qc team.jpg", wide: true },
+    { name: "Admin & HR Team", role: "Administration & Human Resources", image: "/images/ProfileImages/Admin & HR team.jpg", wide: true },
   ];
 
   return (
