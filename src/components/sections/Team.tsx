@@ -7,10 +7,10 @@ import Image from "next/image";
 export default function Team() {
   const teamMembers = [
     { name: "Mr. Sekar N", role: "Partner", image: "/images/ProfileImages/nSekar.jpg" },
-    { name: "Mr. Manimurugan R", role: "GM" },
+    { name: "Mr. Manimurugan R", role: "GM", image: "/images/ProfileImages/Mr. Manimurugan R.jpg" },
     { name: "Mr. Gnanasekaran K", role: "GM", image: "/images/ProfileImages/Gnanasekar.jpg" },
-    { name: "Mr. Santhosh S", role: "Techno Commercial Engineer" },
-    { name: "Priyal", role: "Management" },
+    { name: "Mr. Santhosh S", role: "Techno Commercial Engineer", image: "/images/ProfileImages/Santhosh.jpg" },
+    { name: "Priyal", role: "Management", image: "/images/ProfileImages/Priyal.jpg" },
     { name: "QC Team", role: "Quality Control", image: "/images/ProfileImages/qc team.jpg", wide: true },
     { name: "Admin & HR Team", role: "Administration & Human Resources", image: "/images/ProfileImages/Admin & HR team.jpg", wide: true },
   ];
