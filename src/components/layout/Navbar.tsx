@@ -6,6 +6,17 @@ import Link from "next/link";
 import { Menu, X, Phone } from "lucide-react";
 import { clsx } from "clsx";
 
+const navLinks = [
+  { name: "About", href: "#about" },
+  { name: "Capabilities", href: "#capabilities" },
+  { name: "Gallery", href: "#gallery" },
+  { name: "Quality", href: "#quality" },
+  { name: "Products", href: "#products" },
+  { name: "Customers", href: "#customers" },
+  { name: "Team", href: "#team" },
+  { name: "Contact", href: "#contact" },
+];
+
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -26,28 +37,15 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: "About", href: "#about" },
-    { name: "Capabilities", href: "#capabilities" },
-    { name: "Gallery", href: "#gallery" },
-    { name: "Quality", href: "#quality" },
-    { name: "Products", href: "#products" },
-    { name: "Customers", href: "#customers" },
-    { name: "Team", href: "#team" },
-    { name: "Contact", href: "#contact" },
-  ];
-
   return (
     <nav
       className={clsx(
         "group fixed top-0 w-full z-50",
-        // Only transition background-color/box-shadow/padding — fast composited ops
         "transition-[background-color,box-shadow,padding] duration-400 ease-out",
         isScrolled
           ? "bg-white/95 backdrop-blur-sm shadow-md py-3"
           : "bg-transparent py-5"
       )}
-      style={{ willChange: "background-color" }}
     >
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-end items-center relative min-h-[48px] w-full">
@@ -57,44 +55,34 @@ export default function Navbar() {
             href="#"
             className={clsx(
               "absolute top-1/2 -translate-y-1/2 flex items-center gap-2 z-10",
-              "transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]",
+              "transition-[left,transform] duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]",
               isScrolled
                 ? "left-0 md:left-1/2 md:-translate-x-1/2 md:group-hover:-left-4 md:group-hover:-translate-x-4"
                 : "left-0 translate-x-0"
             )}
-            style={{ willChange: "left, transform" }}
           >
             {/* Logo image */}
             <div
-              className="relative w-8 h-8 md:w-10 md:h-10 shrink-0"
-              style={{
-                transition: "transform 300ms cubic-bezier(0.34,1.56,0.64,1)",
-                willChange: "transform",
-              }}
+              className="relative w-8 h-8 md:w-10 md:h-10 shrink-0 transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
             >
               <Image
                 src="/images/logo.png"
                 alt="Narayana Industries Logo"
                 fill
+                sizes="(max-width: 768px) 32px, 40px"
                 className="object-contain"
                 unoptimized
               />
             </div>
 
-            {/*
-              ── Brand text block ──
-              Fixed dimensions so layout NEVER reflows.
-              We layer two text states and cross-fade with opacity + scale
-              instead of changing font-size / flex-direction / gap / letter-spacing.
-            */}
+            {/* Brand text block */}
             <div className="relative ml-1 select-none" style={{ width: "13rem", height: "2.5rem" }}>
 
-              {/* ── Stacked state (not scrolled): NARAYANA on top, tiny INDUSTRIES below ── */}
+              {/* Stacked state (not scrolled) */}
               <div
                 className="absolute inset-0 flex flex-col items-start justify-center gap-0"
                 style={{
                   transition: "opacity 350ms ease-out, transform 350ms ease-out",
-                  willChange: "opacity, transform",
                   opacity: isScrolled ? 0 : 1,
                   transform: isScrolled ? "translateY(-4px) scale(0.97)" : "translateY(0) scale(1)",
                   pointerEvents: isScrolled ? "none" : "auto",
@@ -108,12 +96,11 @@ export default function Navbar() {
                 </span>
               </div>
 
-              {/* ── Inline state (scrolled): NARAYANA · INDUSTRIES side by side ── */}
+              {/* Inline state (scrolled) */}
               <div
                 className="absolute inset-0 flex flex-row items-center justify-start gap-1.5"
                 style={{
                   transition: "opacity 350ms ease-out, transform 350ms ease-out",
-                  willChange: "opacity, transform",
                   opacity: isScrolled ? 1 : 0,
                   transform: isScrolled ? "translateY(0) scale(1)" : "translateY(4px) scale(0.97)",
                   pointerEvents: isScrolled ? "auto" : "none",
@@ -129,7 +116,7 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* ── Desktop Nav ── */}
+          {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-6">
             {navLinks.map((link, index) => (
               <div
@@ -137,7 +124,6 @@ export default function Navbar() {
                 style={{
                   transition: `opacity 400ms ease-out ${isScrolled ? index * 60 : 0}ms,
                                transform 400ms cubic-bezier(0.34,1.56,0.64,1) ${isScrolled ? index * 60 : 0}ms`,
-                  willChange: "opacity, transform",
                   opacity: isScrolled ? 0 : 1,
                   transform: isScrolled ? "translateX(10px)" : "translateX(0)",
                 }}
@@ -160,7 +146,6 @@ export default function Navbar() {
               style={{
                 transition: `opacity 400ms ease-out ${isScrolled ? navLinks.length * 60 : 0}ms,
                              transform 400ms cubic-bezier(0.34,1.56,0.64,1) ${isScrolled ? navLinks.length * 60 : 0}ms`,
-                willChange: "opacity, transform",
                 opacity: isScrolled ? 0 : 1,
                 transform: isScrolled ? "translateX(10px)" : "translateX(0)",
               }}
@@ -179,19 +164,17 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* ── Mobile hamburger ── */}
+          {/* Mobile hamburger */}
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="p-2 rounded-md text-slate-900 transition-colors duration-150 hover:bg-slate-100"
               aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             >
-              {/* Cross-fade icons instead of conditional render to avoid layout pop */}
               <span
                 style={{
                   display: "block",
                   transition: "opacity 200ms ease, transform 200ms ease",
-                  willChange: "opacity, transform",
                   opacity: isMobileMenuOpen ? 0 : 1,
                   transform: isMobileMenuOpen ? "rotate(90deg) scale(0.7)" : "rotate(0) scale(1)",
                   position: isMobileMenuOpen ? "absolute" : "relative",
@@ -203,7 +186,6 @@ export default function Navbar() {
                 style={{
                   display: "block",
                   transition: "opacity 200ms ease, transform 200ms ease",
-                  willChange: "opacity, transform",
                   opacity: isMobileMenuOpen ? 1 : 0,
                   transform: isMobileMenuOpen ? "rotate(0) scale(1)" : "rotate(-90deg) scale(0.7)",
                   position: isMobileMenuOpen ? "relative" : "absolute",
@@ -216,15 +198,11 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* ── Mobile dropdown ──
-          Uses max-height + opacity animation instead of conditional render
-          to keep transitions smooth on mobile
-      */}
+      {/* Mobile dropdown */}
       <div
         className="md:hidden overflow-hidden"
         style={{
           transition: "max-height 400ms cubic-bezier(0.4,0,0.2,1), opacity 350ms ease",
-          willChange: "max-height, opacity",
           maxHeight: isMobileMenuOpen ? "500px" : "0px",
           opacity: isMobileMenuOpen ? 1 : 0,
         }}
@@ -236,7 +214,6 @@ export default function Navbar() {
               href={link.href}
               className="text-slate-800 font-medium px-3 py-2.5 rounded-lg hover:bg-slate-50 hover:text-sky-500 transition-colors duration-150"
               style={{
-                // Stagger-in each item as menu opens
                 transition: `opacity 300ms ease ${isMobileMenuOpen ? index * 40 : 0}ms,
                              transform 300ms ease ${isMobileMenuOpen ? index * 40 : 0}ms,
                              color 150ms ease`,

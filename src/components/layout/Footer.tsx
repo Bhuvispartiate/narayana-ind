@@ -14,7 +14,7 @@ export default function Footer() {
           <div className="space-y-4">
             <Link href="#" className="flex items-center gap-2 mb-6 group/logo">
               <div className="relative w-10 h-10 transition-transform duration-300 group-hover/logo:scale-110">
-                <Image src="/images/logo.png" alt="Logo" fill className="object-contain" unoptimized />
+                <Image src="/images/logo.png" alt="Logo" fill sizes="40px" className="object-contain" unoptimized />
               </div>
               <div className="flex flex-col ml-1">
                 <span className="font-bold text-xl text-white leading-none tracking-tight">NARAYANA</span>

@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Send, MapPin, Phone, Mail, Clock, Award } from "lucide-react";
-import { motion } from "framer-motion";
+import { Send, MapPin, Phone, Mail, Award } from "lucide-react";
+import { m } from "framer-motion";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -48,7 +48,7 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           
           {/* Left: Contact Form */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -60,28 +60,28 @@ export default function Contact() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-1">
                   <label htmlFor="name" className="text-sm font-medium text-slate-700">Full Name *</label>
-                  <input required type="text" id="name" name="name" value={formData.name} onChange={handleChange} className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue-light focus:border-brand-blue-light outline-none transition-all" />
+                  <input required type="text" id="name" name="name" value={formData.name} onChange={handleChange} className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue-light focus:border-brand-blue-light outline-none transition-[border-color,box-shadow]" />
                 </div>
                 <div className="space-y-1">
                   <label htmlFor="email" className="text-sm font-medium text-slate-700">Email Address *</label>
-                  <input required type="email" id="email" name="email" value={formData.email} onChange={handleChange} className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue-light focus:border-brand-blue-light outline-none transition-all" />
+                  <input required type="email" id="email" name="email" value={formData.email} onChange={handleChange} className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue-light focus:border-brand-blue-light outline-none transition-[border-color,box-shadow]" />
                 </div>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="space-y-1">
                   <label htmlFor="phone" className="text-sm font-medium text-slate-700">Phone Number *</label>
-                  <input required type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue-light focus:border-brand-blue-light outline-none transition-all" />
+                  <input required type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue-light focus:border-brand-blue-light outline-none transition-[border-color,box-shadow]" />
                 </div>
                 <div className="space-y-1">
                   <label htmlFor="company" className="text-sm font-medium text-slate-700">Company Name</label>
-                  <input type="text" id="company" name="company" value={formData.company} onChange={handleChange} className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue-light focus:border-brand-blue-light outline-none transition-all" />
+                  <input type="text" id="company" name="company" value={formData.company} onChange={handleChange} className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue-light focus:border-brand-blue-light outline-none transition-[border-color,box-shadow]" />
                 </div>
               </div>
 
               <div className="space-y-1 flex flex-col flex-grow">
                 <label htmlFor="message" className="text-sm font-medium text-slate-700">Your Requirements *</label>
-                <textarea required id="message" name="message" rows={4} value={formData.message} onChange={handleChange} className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue-light focus:border-brand-blue-light outline-none transition-all resize-none flex-grow"></textarea>
+                <textarea required id="message" name="message" rows={4} value={formData.message} onChange={handleChange} className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-blue-light focus:border-brand-blue-light outline-none transition-[border-color,box-shadow] resize-none flex-grow"></textarea>
               </div>
 
               <div className="pt-2">
@@ -107,10 +107,10 @@ export default function Contact() {
                 </div>
               )}
             </form>
-          </motion.div>
+          </m.div>
 
           {/* Right: Company Details */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -159,12 +159,14 @@ export default function Contact() {
             {/* Embedded Map */}
             <div className="h-56 rounded-2xl overflow-hidden relative border border-slate-300 shadow-sm">
               <iframe
+                title="Narayana Industries Google Maps Location"
                 src="https://maps.google.com/maps?q=10.813054942642852,78.76756481888016&t=&z=15&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
+                sandbox="allow-scripts allow-popups"
                 referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
             </div>
@@ -184,7 +186,7 @@ export default function Contact() {
                 <span className="text-sm font-bold text-brand-dark">ISO 3834-2:2021</span>
               </div>
             </div>
-          </motion.div>
+          </m.div>
 
         </div>
       </div>

@@ -1,20 +1,20 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { User } from "lucide-react";
 import Image from "next/image";
 
-export default function Team() {
-  const teamMembers = [
-    { name: "Mr. Sekar N", role: "Partner", image: "/images/ProfileImages/nSekar.jpg" },
-    { name: "Mr. Manimurugan R", role: "GM", image: "/images/ProfileImages/Mr. Manimurugan R.jpg" },
-    { name: "Mr. Gnanasekaran K", role: "GM", image: "/images/ProfileImages/Gnanasekar.jpg" },
-    { name: "Mr. Santhosh S", role: "Techno Commercial Engineer", image: "/images/ProfileImages/Santhosh.jpg" },
-    { name: "Priyal", role: "Management", image: "/images/ProfileImages/Priyal.jpg" },
-    { name: "QC Team", role: "Quality Control", image: "/images/ProfileImages/qc team.jpg", wide: true },
-    { name: "Admin & HR Team", role: "Administration & Human Resources", image: "/images/ProfileImages/Admin & HR team.jpg", wide: true },
-  ];
+const teamMembers = [
+  { name: "Mr. Sekar N", role: "Partner", image: "/images/ProfileImages/nSekar.jpg" },
+  { name: "Mr. Manimurugan R", role: "GM", image: "/images/ProfileImages/Mr. Manimurugan R.jpg" },
+  { name: "Mr. Gnanasekaran K", role: "GM", image: "/images/ProfileImages/Gnanasekar.jpg" },
+  { name: "Mr. Santhosh S", role: "Techno Commercial Engineer", image: "/images/ProfileImages/Santhosh.jpg" },
+  { name: "Priyal", role: "Management", image: "/images/ProfileImages/Priyal.jpg" },
+  { name: "QC Team", role: "Quality Control", image: "/images/ProfileImages/qc team.jpg", wide: true },
+  { name: "Admin & HR Team", role: "Administration & Human Resources", image: "/images/ProfileImages/Admin & HR team.jpg", wide: true },
+];
 
+export default function Team() {
   return (
     <section id="team" className="py-24 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -33,13 +33,13 @@ export default function Team() {
 
         <div className="flex flex-wrap justify-center gap-8">
           {teamMembers.map((member, index) => (
-            <motion.div
+            <m.div
               key={member.name}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
-              className={`relative group rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 bg-slate-100 ${
+              className={`relative group rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-[box-shadow,border-color] duration-500 bg-slate-100 ${
                 member.wide 
                   ? "w-full sm:w-full lg:w-[calc(40%-1rem)]" 
                   : "w-full sm:w-[calc(50%-1rem)] lg:w-[calc(20%-1.6rem)]"
@@ -58,8 +58,8 @@ export default function Team() {
                   />
                 ) : (
                   <>
-                    <User size={80} strokeWidth={1} className="text-slate-400 opacity-40 group-hover:scale-110 group-hover:text-sky-500 transition-all duration-700 ease-out" />
-                    <span className="text-xs font-semibold tracking-widest uppercase text-slate-400 mt-4 opacity-50 group-hover:opacity-100 group-hover:text-sky-600 transition-all duration-500">
+                    <User size={80} strokeWidth={1} className="text-slate-400 opacity-40 group-hover:scale-110 group-hover:text-sky-500 transition-[transform,color] duration-700 ease-out" />
+                    <span className="text-xs font-semibold tracking-widest uppercase text-slate-400 mt-4 opacity-50 group-hover:opacity-100 group-hover:text-sky-600 transition-opacity duration-500">
                       Image Placeholder
                     </span>
                   </>
@@ -77,7 +77,7 @@ export default function Team() {
               
               {/* Accent Border Glow */}
               <div className="absolute inset-0 border-2 border-transparent group-hover:border-sky-500/30 rounded-3xl transition-colors duration-500 pointer-events-none" />
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

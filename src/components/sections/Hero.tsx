@@ -1,44 +1,39 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { m, Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { 
   ArrowRight, 
-  ShieldCheck, 
-  Target, 
   Phone,
-  CheckCircle2,
-  Award,
-  Sparkles,
-  Layers,
-  ChevronRight,
-  Factory,
-  Settings,
-  Weight
+  Sparkles, 
+  Factory, 
+  Settings, 
+  Weight,
+  Target
 } from "lucide-react";
 
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.15,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.7, ease: [0.215, 0.61, 0.355, 1] }
+  },
+};
+
 export default function Hero() {
-  const containerVariants: Variants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.12,
-        delayChildren: 0.15,
-      },
-    },
-  };
-
-  const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 24 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.7, ease: [0.215, 0.61, 0.355, 1] }
-    },
-  };
-
   return (
     <section className="relative min-h-[80vh] w-full overflow-hidden bg-white text-slate-900 pt-24 pb-16 lg:pt-28 lg:pb-20 flex items-center">
       
@@ -48,7 +43,7 @@ export default function Hero() {
       />
 
       {/* ── Soft Vibrant Light Orbs ── */}
-      <motion.div 
+      <m.div 
         animate={{ 
           scale: [1, 1.2, 1],
           opacity: [0.35, 0.55, 0.35],
@@ -56,7 +51,7 @@ export default function Hero() {
         transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
         className="absolute -top-16 left-1/4 w-[480px] h-[480px] bg-sky-100/70 rounded-full filter blur-[120px] pointer-events-none"
       />
-      <motion.div 
+      <m.div 
         animate={{ 
           scale: [1, 1.25, 1],
           opacity: [0.25, 0.45, 0.25],
@@ -69,14 +64,14 @@ export default function Hero() {
         <div className="grid lg:grid-cols-[1fr_1.6fr] gap-12 lg:gap-16 items-center">
           
           {/* ── Left Column: Text & Hero Copy ── */}
-          <motion.div 
+          <m.div 
             variants={containerVariants}
             initial="hidden"
             animate="visible"
             className="flex flex-col items-start"
           >
             {/* Live Certification Badge Pill */}
-            <motion.div 
+            <m.div 
               variants={itemVariants} 
               className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-slate-50 border border-slate-200/90 shadow-sm mb-7 backdrop-blur-md"
             >
@@ -87,10 +82,10 @@ export default function Hero() {
               <span className="text-xs font-semibold tracking-wide text-slate-700 uppercase">
                 Advanced Heavy Fabrication & Machining
               </span>
-            </motion.div>
+            </m.div>
 
             {/* Main Headline */}
-            <motion.h1 
+            <m.h1 
               variants={itemVariants} 
               className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-[1.1] mb-6 tracking-tight"
             >
@@ -103,24 +98,24 @@ export default function Hero() {
               <span className="bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 bg-clip-text text-transparent">
                 Excellence.
               </span>
-            </motion.h1>
+            </m.h1>
 
             {/* Description Paragraph */}
-            <motion.p 
+            <m.p 
               variants={itemVariants} 
               className="text-base sm:text-lg text-slate-600 mb-8 max-w-xl leading-relaxed font-normal"
             >
               We are an ISO-certified precision manufacturing partner delivering high-reliability components for railway, automotive, power generation, and heavy industrial applications.
-            </motion.p>
+            </m.p>
 
             {/* CTA Buttons */}
-            <motion.div 
+            <m.div 
               variants={itemVariants} 
               className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-10"
             >
               <Link 
                 href="#capabilities"
-                className="group relative inline-flex items-center justify-center gap-2.5 bg-sky-500 hover:bg-sky-600 text-white px-8 py-4 rounded-xl font-bold transition-all duration-300 shadow-[0_6px_20px_rgba(14,165,233,0.3)] hover:shadow-[0_10px_28px_rgba(14,165,233,0.45)] scale-100 active:scale-95"
+                className="group relative inline-flex items-center justify-center gap-2.5 bg-sky-500 hover:bg-sky-600 text-white px-8 py-4 rounded-xl font-bold transition-[background-color,box-shadow,transform] duration-300 shadow-[0_6px_20px_rgba(14,165,233,0.3)] hover:shadow-[0_10px_28px_rgba(14,165,233,0.45)] scale-100 active:scale-95"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   Explore Capabilities
@@ -130,15 +125,15 @@ export default function Hero() {
               
               <Link 
                 href="#contact"
-                className="inline-flex items-center justify-center gap-2.5 bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 hover:border-slate-300 px-8 py-4 rounded-xl font-semibold transition-all duration-200 shadow-sm"
+                className="inline-flex items-center justify-center gap-2.5 bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 hover:border-slate-300 px-8 py-4 rounded-xl font-semibold transition-[background-color,border-color] duration-200 shadow-sm"
               >
                 <Phone size={17} className="text-sky-500" />
                 <span>Get a Quote</span>
               </Link>
-            </motion.div>
+            </m.div>
             
             {/* Key Metrics Strip */}
-            <motion.div 
+            <m.div 
               variants={itemVariants} 
               className="grid grid-cols-3 gap-4 sm:gap-6 pt-6 border-t border-slate-100 w-full"
             >
@@ -162,11 +157,11 @@ export default function Hero() {
                 </span>
                 <span className="text-xs font-medium text-slate-500 mt-0.5">Micron Accuracy</span>
               </div>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
 
           {/* ── Right Column: Showcase Card Visual ── */}
-          <motion.div 
+          <m.div 
             initial={{ opacity: 0, scale: 0.95, y: 25 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.85, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
@@ -229,9 +224,8 @@ export default function Hero() {
               </div>
             </div>
 
-
             {/* ── Floating Badge 1: High-Tech Machinery (Top Left) ── */}
-            <motion.div 
+            <m.div 
               animate={{ y: [8, -8, 8] }}
               transition={{ repeat: Infinity, duration: 6, ease: "easeInOut", delay: 1 }}
               className="absolute -top-5 -left-3 sm:-left-6 bg-white/95 backdrop-blur-xl border border-slate-200/90 p-3.5 rounded-2xl shadow-xl flex items-center gap-3.5 z-20"
@@ -243,19 +237,19 @@ export default function Hero() {
                 <p className="text-slate-900 font-bold text-xs">High-Tech Machinery</p>
                 <p className="text-slate-500 text-[10px]">CNC, Laser & Robotic Welding</p>
               </div>
-            </motion.div>
+            </m.div>
 
             {/* ── Floating Badge 3: Technology Accent ── */}
-            <motion.div 
+            <m.div 
               animate={{ y: [-6, 6, -6] }}
               transition={{ repeat: Infinity, duration: 4.8, ease: "easeInOut", delay: 2 }}
               className="absolute -bottom-3 right-8 bg-white/95 backdrop-blur-xl border border-slate-200/90 px-4 py-2 rounded-xl shadow-lg flex items-center gap-2 z-20"
             >
               <Sparkles size={15} className="text-sky-500" />
               <span className="text-slate-800 font-semibold text-xs">Advanced CNC Powered</span>
-            </motion.div>
+            </m.div>
 
-          </motion.div>
+          </m.div>
 
         </div>
       </div>

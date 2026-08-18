@@ -11,10 +11,11 @@ import Customers from "@/components/sections/Customers";
 import Team from "@/components/sections/Team";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/layout/Footer";
+import { MotionProvider } from "@/components/providers/MotionProvider";
 
 export default function Home() {
   return (
-    <>
+    <MotionProvider>
       <Navbar />
       <main>
         <Hero />
@@ -30,6 +31,6 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
-    </>
+    </MotionProvider>
   );
 }

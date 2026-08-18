@@ -1,41 +1,41 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ClipboardCheck, Search, ShieldAlert, FileText } from "lucide-react";
 
+const processSteps = [
+  {
+    icon: ClipboardCheck,
+    title: "Material Receiving",
+    desc: "Verification of incoming raw materials & components.",
+  },
+  {
+    icon: Search,
+    title: "In-Process Checks",
+    desc: "Continuous dimensional measurement and inspection.",
+  },
+  {
+    icon: ShieldAlert,
+    title: "Testing Phase",
+    desc: "Testing against stringent requirements and standards.",
+  },
+  {
+    icon: FileText,
+    title: "Final Inspection",
+    desc: "Complete inspection with comprehensive documentation.",
+  },
+];
+
+const variants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease: [0.215, 0.61, 0.355, 1] as [number, number, number, number], delay: i * 0.1 },
+  }),
+};
+
 export default function QualityAssurance() {
-  const processSteps = [
-    {
-      icon: ClipboardCheck,
-      title: "Material Receiving",
-      desc: "Verification of incoming raw materials & components.",
-    },
-    {
-      icon: Search,
-      title: "In-Process Checks",
-      desc: "Continuous dimensional measurement and inspection.",
-    },
-    {
-      icon: ShieldAlert,
-      title: "Testing Phase",
-      desc: "Testing against stringent requirements and standards.",
-    },
-    {
-      icon: FileText,
-      title: "Final Inspection",
-      desc: "Complete inspection with comprehensive documentation.",
-    },
-  ];
-
-  const variants = {
-    hidden: { opacity: 0, y: 24 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.55, ease: [0.215, 0.61, 0.355, 1] as [number, number, number, number], delay: i * 0.1 },
-    }),
-  };
-
   return (
     <section id="quality" className="bg-surface-light relative py-16 md:py-24 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -56,7 +56,7 @@ export default function QualityAssurance() {
         <div className="relative">
           {/* Connecting line (desktop only) */}
           <div className="hidden md:block absolute top-1/2 -translate-y-1/2 left-[12%] right-[12%] h-0.5 bg-slate-200 overflow-hidden z-0">
-            <motion.div
+            <m.div
               className="absolute top-0 left-0 h-full bg-gradient-to-r from-brand-orange-start via-brand-blue-light to-brand-navy w-full opacity-50"
             />
           </div>
@@ -64,14 +64,14 @@ export default function QualityAssurance() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
             {processSteps.map((step, index) => {
               return (
-                <motion.div
+                <m.div
                   key={step.title}
                   custom={index}
                   variants={variants}
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, margin: "-60px" }}
-                  className="relative text-center bg-white p-4 md:p-6 rounded-2xl outline outline-1 outline-slate-200/60 hover:outline-brand-orange-start hover:shadow-lg transition-all duration-300 shadow-md"
+                  className="relative text-center bg-white p-4 md:p-6 rounded-2xl outline outline-1 outline-slate-200/60 hover:outline-brand-orange-start hover:shadow-lg transition-[outline-color,box-shadow] duration-300 shadow-md"
                 >
                   {/* Connecting line (mobile) - for adjacent pairs */}
                   {index % 2 === 0 && (
@@ -91,7 +91,7 @@ export default function QualityAssurance() {
 
                   <h3 className="text-sm md:text-lg font-bold text-brand-dark mb-2 leading-tight">{step.title}</h3>
                   <p className="text-xs md:text-sm text-slate-600 line-clamp-3 md:line-clamp-none">{step.desc}</p>
-                </motion.div>
+                </m.div>
               );
             })}
           </div>

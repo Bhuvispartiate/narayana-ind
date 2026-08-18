@@ -1,16 +1,23 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Image from "next/image";
-import { Award, CheckCircle, Settings, Wrench } from "lucide-react";
+import { Award, CheckCircle, Settings } from "lucide-react";
+
+const certifications = [
+  { name: "ISO 9001:2015", icon: "/images/Certificates/cert1.png" },
+  { name: "EN 15085-2:2020+A1:2023", icon: "/images/Certificates/cert2.png" },
+  { name: "ISO 3834-2:2021", icon: "/images/Certificates/cert3.png" },
+];
+
+const coreFeatures = [
+  "Advanced CNC Machining",
+  "Heavy Fabrication",
+  "Robotic Welding",
+  "Strict Quality Control"
+];
 
 export default function About() {
-  const certifications = [
-    { name: "ISO 9001:2015", icon: "/images/Certificates/cert1.png" },
-    { name: "EN 15085-2:2020+A1:2023", icon: "/images/Certificates/cert2.png" },
-    { name: "ISO 3834-2:2021", icon: "/images/Certificates/cert3.png" },
-  ];
-
   return (
     <section id="about" className="py-24 bg-surface-light relative overflow-hidden">
       {/* Decorative background element */}
@@ -20,7 +27,7 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
           {/* Left Column: Content (Sheet Metal Fold) */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -45,7 +52,7 @@ export default function About() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
-              {['Advanced CNC Machining', 'Heavy Fabrication', 'Robotic Welding', 'Strict Quality Control'].map((item) => (
+              {coreFeatures.map((item) => (
                 <div key={item} className="flex items-center gap-3">
                   <CheckCircle className="text-sky-500 shrink-0" size={20} />
                   <span className="font-medium text-slate-800">{item}</span>
@@ -65,10 +72,10 @@ export default function About() {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Right Column: Image Hierarchical Layout */}
-          <motion.div
+          <m.div
             className="grid grid-cols-4 grid-rows-3 gap-3 sm:gap-4 w-full h-[450px] sm:h-[600px]"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -122,7 +129,7 @@ export default function About() {
             </div>
 
             {/* Stats Box - spans 1 col, 1 row */}
-            <div className="relative rounded-2xl overflow-hidden group bg-white p-2 flex flex-col justify-center items-center text-center col-span-1 row-span-1 border-2 border-sky-100 outline outline-4 outline-sky-50 shadow-lg hover:border-sky-300 hover:outline-sky-100 hover:shadow-sky-500/20 transition-all duration-300">
+            <div className="relative rounded-2xl overflow-hidden group bg-white p-2 flex flex-col justify-center items-center text-center col-span-1 row-span-1 border-2 border-sky-100 outline outline-4 outline-sky-50 shadow-lg hover:border-sky-300 hover:outline-sky-100 hover:shadow-sky-500/20 transition-[border-color,outline-color,box-shadow] duration-300">
               {/* Subtle background decoration */}
               <div className="absolute -right-4 -bottom-4 opacity-[0.03] group-hover:opacity-10 transition-opacity duration-500">
                 <Settings size={80} className="text-sky-600" />
@@ -151,7 +158,7 @@ export default function About() {
               />
             </div>
 
-          </motion.div>
+          </m.div>
 
         </div>
       </div>

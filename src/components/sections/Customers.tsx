@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-
 import { useEffect, useState } from "react";
 
 type Brand = { name: string; image: string };
+type ClonedBrand = Brand & { uniqueKey: string };
 
 const allBrands: Brand[] = [
   { name: "TVS Air Springs", image: "/images/Brands-Couresel/1.png" },
@@ -21,8 +21,31 @@ const allBrands: Brand[] = [
   { name: "RIBO", image: "/images/Brands-Couresel/12.webp" }
 ];
 
-// Duplicate for infinite scroll effect (6 times to ensure screen coverage)
-const createMarquee = (arr: Brand[]) => [...arr, ...arr, ...arr, ...arr, ...arr, ...arr];
+// Duplicate for infinite scroll effect with stable unique keys
+const createMarquee = (arr: Brand[], prefix: string): ClonedBrand[] => {
+  return [0, 1, 2, 3, 4, 5].flatMap((round) =>
+    arr.map((brand) => ({
+      ...brand,
+      uniqueKey: `${prefix}-${round}-${brand.name}`
+    }))
+  );
+};
+
+// BrandCard defined at top-level to prevent recreation on re-renders
+function BrandCard({ customer }: { customer: Brand }) {
+  return (
+    <div className="mx-4 md:mx-6 px-6 py-4 flex items-center justify-center min-w-[200px] h-[100px] transition-[transform,opacity] duration-300 cursor-default relative overflow-hidden group">
+      <Image
+        src={customer.image}
+        alt={customer.name}
+        fill
+        sizes="200px"
+        className="object-contain p-4"
+        unoptimized
+      />
+    </div>
+  );
+}
 
 export default function Customers() {
   const [tracks, setTracks] = useState({
@@ -41,21 +64,9 @@ export default function Customers() {
     });
   }, []);
 
-  const items1 = createMarquee(tracks.t1);
-  const items2 = createMarquee(tracks.t2);
-  const items3 = createMarquee(tracks.t3);
-
-  const Card = ({ customer }: { customer: Brand }) => (
-    <div className="mx-4 md:mx-6 px-6 py-4 flex items-center justify-center min-w-[200px] h-[100px] transition-all duration-300 cursor-default relative overflow-hidden group">
-      <Image
-        src={customer.image}
-        alt={customer.name}
-        fill
-        className="object-contain p-4"
-        unoptimized
-      />
-    </div>
-  );
+  const items1 = createMarquee(tracks.t1, "t1");
+  const items2 = createMarquee(tracks.t2, "t2");
+  const items3 = createMarquee(tracks.t3, "t3");
 
   return (
     <section id="customers" className="py-20 bg-white overflow-hidden border-y border-gray-200 relative">
@@ -78,22 +89,22 @@ export default function Customers() {
 
         {/* Track 1: Right to Left */}
         <div className="flex w-max animate-marquee-left pause-marquee-hover whitespace-nowrap">
-          {items1.map((customer, index) => (
-            <Card key={`t1-${index}-${customer.name}`} customer={customer} />
+          {items1.map((customer) => (
+            <BrandCard key={customer.uniqueKey} customer={customer} />
           ))}
         </div>
 
         {/* Track 2: Left to Right */}
         <div className="flex w-max animate-marquee-right pause-marquee-hover whitespace-nowrap">
-          {items2.map((customer, index) => (
-            <Card key={`t2-${index}-${customer.name}`} customer={customer} />
+          {items2.map((customer) => (
+            <BrandCard key={customer.uniqueKey} customer={customer} />
           ))}
         </div>
 
         {/* Track 3: Right to Left */}
         <div className="flex w-max animate-marquee-left-fast pause-marquee-hover whitespace-nowrap">
-          {items3.map((customer, index) => (
-            <Card key={`t3-${index}-${customer.name}`} customer={customer} />
+          {items3.map((customer) => (
+            <BrandCard key={customer.uniqueKey} customer={customer} />
           ))}
         </div>
       </div>
