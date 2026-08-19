@@ -60,90 +60,6 @@ function AnimatedCounter({
   return <span ref={ref}>{displayValue}</span>;
 }
 
-function ColorWipeLine({ 
-  children, 
-  delay = 0,
-  colors = ["#0284c7", "#4f46e5", "#38bdf8"],
-  className = "",
-}: { 
-  children: React.ReactNode; 
-  delay?: number;
-  colors?: string[];
-  className?: string;
-}) {
-  return (
-    <span className={`relative inline-flex items-baseline overflow-hidden py-1 px-1 -my-1 -mx-1 ${className}`}>
-      {/* ── Text Content unveiled by left-to-right wipe ── */}
-      <m.span
-        initial={{ 
-          clipPath: "inset(0 100% 0 0)",
-          opacity: 0,
-          x: -10
-        }}
-        animate={{ 
-          clipPath: "inset(0 0% 0 0)",
-          opacity: 1,
-          x: 0
-        }}
-        transition={{
-          duration: 0.65,
-          delay: delay + 0.26,
-          ease: [0.22, 1, 0.36, 1],
-        }}
-        className="inline-flex items-baseline flex-wrap gap-x-3.5 gap-y-1"
-      >
-        {children}
-      </m.span>
-
-      {/* ── Canva Multi-Layer Color Wipe Ribbons ── */}
-      {/* Ribbon 1 (Lead Color) */}
-      <m.span
-        aria-hidden="true"
-        className="absolute inset-y-0 -left-[15%] w-[130%] pointer-events-none z-30 rounded-sm shadow-sm"
-        style={{ backgroundColor: colors[0] }}
-        initial={{ x: "-115%", skewX: "-12deg" }}
-        animate={{ x: ["-115%", "0%", "115%"] }}
-        transition={{
-          duration: 0.88,
-          delay: delay,
-          times: [0, 0.48, 1],
-          ease: [0.76, 0, 0.24, 1],
-        }}
-      />
-
-      {/* Ribbon 2 (Secondary Brand Layer) */}
-      <m.span
-        aria-hidden="true"
-        className="absolute inset-y-0 -left-[15%] w-[130%] pointer-events-none z-20 rounded-sm shadow-sm"
-        style={{ backgroundColor: colors[1] }}
-        initial={{ x: "-115%", skewX: "-12deg" }}
-        animate={{ x: ["-115%", "0%", "115%"] }}
-        transition={{
-          duration: 0.88,
-          delay: delay + 0.08,
-          times: [0, 0.48, 1],
-          ease: [0.76, 0, 0.24, 1],
-        }}
-      />
-
-      {/* Ribbon 3 (Accent Finish Layer) */}
-      <m.span
-        aria-hidden="true"
-        className="absolute inset-y-0 -left-[15%] w-[130%] pointer-events-none z-10 rounded-sm shadow-sm"
-        style={{ backgroundColor: colors[2] }}
-        initial={{ x: "-115%", skewX: "-12deg" }}
-        animate={{ x: ["-115%", "0%", "115%"] }}
-        transition={{
-          duration: 0.88,
-          delay: delay + 0.16,
-          times: [0, 0.48, 1],
-          ease: [0.76, 0, 0.24, 1],
-        }}
-      />
-    </span>
-  );
-}
-
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
@@ -215,32 +131,20 @@ export default function Hero() {
               </span>
             </m.div>
 
-            {/* Main Headline with Canva PPT "Color Wipe" In-Animation */}
+            {/* Main Headline */}
             <m.h1 
               variants={itemVariants} 
-              className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-[1.16] mb-6 tracking-tight flex flex-col items-start gap-y-2 sm:gap-y-3"
+              className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-[1.16] mb-6 tracking-tight flex flex-wrap items-baseline gap-x-3.5 gap-y-1"
             >
-              {/* Line 1: Manufacturing Reliability. */}
-              <ColorWipeLine 
-                delay={0.15}
-                colors={["#0284c7", "#4f46e5", "#38bdf8"]}
-              >
-                <span>Manufacturing</span>
-                <span className="bg-gradient-to-r from-sky-600 via-sky-500 to-indigo-600 bg-clip-text text-transparent">
-                  Reliability.
-                </span>
-              </ColorWipeLine>
-
-              {/* Line 2: Engineering Excellence. */}
-              <ColorWipeLine 
-                delay={0.42}
-                colors={["#f59e0b", "#ea580c", "#6366f1"]}
-              >
-                <span>Engineering</span>
-                <span className="bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 bg-clip-text text-transparent">
-                  Excellence.
-                </span>
-              </ColorWipeLine>
+              <span>Manufacturing</span>
+              <span className="bg-gradient-to-r from-sky-600 via-sky-500 to-indigo-600 bg-clip-text text-transparent">
+                Reliability.
+              </span>
+              <div className="w-full h-0" />
+              <span>Engineering</span>
+              <span className="bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 bg-clip-text text-transparent">
+                Excellence.
+              </span>
             </m.h1>
 
             {/* Description Paragraph (Space Grotesk) */}
