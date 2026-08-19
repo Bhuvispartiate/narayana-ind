@@ -1,31 +1,96 @@
 "use client";
 
+import { useState, useEffect, useRef, ComponentType } from "react";
 import { m, useInView } from "framer-motion";
-import { useRef, ComponentType } from "react";
 import { Maximize, Settings, Truck, ShieldCheck } from "lucide-react";
 
+function AnimatedCounter({ 
+  to, 
+  duration = 2, 
+  useGrouping = false, 
+  suffix = "", 
+  prefix = "" 
+}: { 
+  to: number; 
+  duration?: number; 
+  useGrouping?: boolean; 
+  suffix?: string; 
+  prefix?: string; 
+}) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-30px" });
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    if (!isInView) return;
+    
+    let startTime: number | null = null;
+    let animationFrameId: number;
+
+    const easeOutCubic = (x: number): number => {
+      return 1 - Math.pow(1 - x, 3);
+    };
+
+    const updateCounter = (currentTime: number) => {
+      if (startTime === null) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / (duration * 1000), 1);
+      const easedProgress = easeOutCubic(progress);
+      const current = Math.round(to * easedProgress);
+
+      setCount(current);
+
+      if (progress < 1) {
+        animationFrameId = requestAnimationFrame(updateCounter);
+      }
+    };
+
+    animationFrameId = requestAnimationFrame(updateCounter);
+
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isInView, to, duration]);
+
+  const formatted = useGrouping ? count.toLocaleString() : count.toString();
+
+  return (
+    <span ref={ref}>
+      {prefix}{formatted}{suffix}
+    </span>
+  );
+}
+
 type StatItem = {
-  value: string;
+  numericValue: number;
+  suffix?: string;
+  prefix?: string;
+  useGrouping?: boolean;
+  duration?: number;
   label: string;
   icon: ComponentType<{ className?: string }>;
 };
 
 const stats: StatItem[] = [
-  { value: "2,626 m²", label: "Covered Operational Area", icon: Maximize },
-  { value: "15+", label: "Machining Centres & Presses", icon: Settings },
-  { value: "6+", label: "EOT & Mobile Cranes", icon: Truck },
-  { value: "100%", label: "Quality Compliant", icon: ShieldCheck },
+  { numericValue: 2626, suffix: " m²", useGrouping: true, duration: 2.2, label: "Covered Operational Area", icon: Maximize },
+  { numericValue: 15, suffix: "+", duration: 1.8, label: "Machining Centres & Presses", icon: Settings },
+  { numericValue: 6, suffix: "+", duration: 1.5, label: "EOT & Mobile Cranes", icon: Truck },
+  { numericValue: 100, suffix: "%", duration: 2.0, label: "Quality Compliant", icon: ShieldCheck },
 ];
 
-function Counter({ value, label, icon: Icon }: { value: string; label: string; icon: ComponentType<{ className?: string }> }) {
+function CounterCard({ item }: { item: StatItem }) {
+  const Icon = item.icon;
   return (
     <div className="flex flex-col items-center justify-center p-3 sm:p-6 text-center sm:border-r border-white/10 relative group h-full">
-      <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+      <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
       <Icon className="text-brand-orange-start mb-2 sm:mb-3 h-6 w-6 sm:h-[28px] sm:w-[28px]" />
-      <div className="text-xl sm:text-3xl md:text-4xl font-bold text-white mb-1">
-        {value}
+      <div className="text-xl sm:text-3xl md:text-4xl font-bold text-white mb-1 font-display">
+        <AnimatedCounter 
+          to={item.numericValue} 
+          suffix={item.suffix} 
+          prefix={item.prefix}
+          useGrouping={item.useGrouping}
+          duration={item.duration}
+        />
       </div>
-      <div className="text-[10px] sm:text-sm text-slate-300 font-medium leading-tight">{label}</div>
+      <div className="text-[10px] sm:text-sm text-slate-300 font-medium leading-tight font-sans">{item.label}</div>
     </div>
   );
 }
@@ -45,7 +110,7 @@ export default function Stats() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Counter value={stat.value} label={stat.label} icon={stat.icon} />
+              <CounterCard item={stat} />
             </m.div>
           ))}
         </div>

@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { 
+  Inter, 
+  Space_Grotesk, 
+  JetBrains_Mono, 
+  Plus_Jakarta_Sans, 
+  Manrope,
+  Barlow
+} from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -7,9 +14,28 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
+  subsets: ["latin"],
+  weight: ["500", "600", "700", "800"],
+});
+
+const manrope = Manrope({
+  variable: "--font-manrope",
+  subsets: ["latin"],
+  weight: ["500", "600", "700", "800"],
+});
+
+const barlow = Barlow({
+  variable: "--font-barlow",
+  subsets: ["latin"],
+  weight: ["600", "700", "800"],
+});
+
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -30,7 +56,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} h-full antialiased overflow-x-clip`}
+      className={`${inter.variable} ${plusJakartaSans.variable} ${manrope.variable} ${barlow.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} h-full antialiased overflow-x-clip`}
     >
       <body className="min-h-full flex flex-col font-sans overflow-x-clip">{children}</body>
     </html>

@@ -134,9 +134,19 @@ export default function Navbar() {
               >
                 <Link
                   href={link.href}
-                  className="text-sm font-semibold text-slate-900 transition-colors duration-150 hover:text-sky-500"
+                  className="group/navlink relative py-1 text-sm font-semibold text-slate-800 transition-colors duration-200 hover:text-sky-600 inline-flex flex-col items-start"
                 >
-                  {link.name}
+                  <span>{link.name}</span>
+                  {/* Drawing Stroke Underline Beam (Left to Right) */}
+                  <span
+                    aria-hidden="true"
+                    className="absolute -bottom-0.5 left-0 right-0 h-[2.5px] rounded-full bg-gradient-to-r from-sky-500 via-sky-400 to-indigo-600 origin-left scale-x-[0.001] opacity-0 group-hover/navlink:scale-x-100 group-hover/navlink:opacity-100 transition-[transform,opacity] duration-[800ms] ease-out pointer-events-none"
+                  />
+                  {/* Subtle Glow Trace */}
+                  <span
+                    aria-hidden="true"
+                    className="absolute -bottom-1 left-0 right-0 h-[6px] rounded-full bg-sky-400/30 blur-xs origin-left scale-x-[0.001] opacity-0 group-hover/navlink:scale-x-100 group-hover/navlink:opacity-100 transition-[transform,opacity] duration-[800ms] ease-out pointer-events-none"
+                  />
                 </Link>
               </div>
             ))}

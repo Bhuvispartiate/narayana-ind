@@ -8,9 +8,13 @@
   --color-brand-dark: #0f172a;
   --color-surface-light: #f8fafc;
   
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-jakarta), var(--font-manrope), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
+  --font-space-grotesk: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-jakarta: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-manrope: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-barlow: var(--font-barlow), ui-sans-serif, system-ui, sans-serif;
 
   /* Custom duration for nav transitions */
   --transition-duration-400: 400ms;
@@ -23,6 +27,10 @@ html {
 :root {
   --background: #ffffff;
   --foreground: var(--color-brand-dark);
+}
+
+body, p {
+  font-family: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
 }
 
 body {
@@ -51,6 +59,54 @@ h1, h2, h3, h4, h5, h6 {
 }
 .animate-marquee {
   animation: marquee 60s linear infinite;
+}
+
+/* ── Looping Border Beam & Outline Animations ── */
+@keyframes border-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes border-spin-reverse {
+  0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes laser-sweep {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+  }
+  40%, 100% {
+    transform: translateX(250%) skewX(-20deg);
+  }
+}
+
+.animate-border-spin {
+  animation: border-spin 4s linear infinite;
+}
+
+.animate-border-spin-fast {
+  animation: border-spin 2s linear infinite;
+}
+
+.animate-border-spin-slow {
+  animation: border-spin 6.5s linear infinite;
+}
+
+.animate-border-spin-reverse {
+  animation: border-spin-reverse 5s linear infinite;
+}
+
+.animate-laser-sweep {
+  animation: laser-sweep 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 .pause-on-hover:hover {

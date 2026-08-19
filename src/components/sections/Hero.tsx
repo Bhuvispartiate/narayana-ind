@@ -1,6 +1,7 @@
 "use client";
 
-import { m, Variants } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { m, useInView, Variants } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { 
@@ -12,6 +13,136 @@ import {
   Weight,
   Target
 } from "lucide-react";
+
+function AnimatedCounter({ 
+  from = 0, 
+  to, 
+  duration = 2, 
+  decimals = 0 
+}: { 
+  from?: number; 
+  to: number; 
+  duration?: number; 
+  decimals?: number; 
+}) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-20px" });
+  const [displayValue, setDisplayValue] = useState(() => from.toFixed(decimals));
+
+  useEffect(() => {
+    if (!isInView) return;
+    
+    let startTime: number | null = null;
+    let animationFrameId: number;
+
+    const easeOutCubic = (x: number): number => {
+      return 1 - Math.pow(1 - x, 3);
+    };
+
+    const updateCounter = (currentTime: number) => {
+      if (startTime === null) startTime = currentTime;
+      const progress = Math.min((currentTime - startTime) / (duration * 1000), 1);
+      const easedProgress = easeOutCubic(progress);
+      const currentValue = from + (to - from) * easedProgress;
+
+      setDisplayValue(currentValue.toFixed(decimals));
+
+      if (progress < 1) {
+        animationFrameId = requestAnimationFrame(updateCounter);
+      }
+    };
+
+    animationFrameId = requestAnimationFrame(updateCounter);
+
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [isInView, from, to, duration, decimals]);
+
+  return <span ref={ref}>{displayValue}</span>;
+}
+
+function ColorWipeLine({ 
+  children, 
+  delay = 0,
+  colors = ["#0284c7", "#4f46e5", "#38bdf8"],
+  className = "",
+}: { 
+  children: React.ReactNode; 
+  delay?: number;
+  colors?: string[];
+  className?: string;
+}) {
+  return (
+    <span className={`relative inline-flex items-baseline overflow-hidden py-1 px-1 -my-1 -mx-1 ${className}`}>
+      {/* ── Text Content unveiled by left-to-right wipe ── */}
+      <m.span
+        initial={{ 
+          clipPath: "inset(0 100% 0 0)",
+          opacity: 0,
+          x: -10
+        }}
+        animate={{ 
+          clipPath: "inset(0 0% 0 0)",
+          opacity: 1,
+          x: 0
+        }}
+        transition={{
+          duration: 0.65,
+          delay: delay + 0.26,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+        className="inline-flex items-baseline flex-wrap gap-x-3.5 gap-y-1"
+      >
+        {children}
+      </m.span>
+
+      {/* ── Canva Multi-Layer Color Wipe Ribbons ── */}
+      {/* Ribbon 1 (Lead Color) */}
+      <m.span
+        aria-hidden="true"
+        className="absolute inset-y-0 -left-[15%] w-[130%] pointer-events-none z-30 rounded-sm shadow-sm"
+        style={{ backgroundColor: colors[0] }}
+        initial={{ x: "-115%", skewX: "-12deg" }}
+        animate={{ x: ["-115%", "0%", "115%"] }}
+        transition={{
+          duration: 0.88,
+          delay: delay,
+          times: [0, 0.48, 1],
+          ease: [0.76, 0, 0.24, 1],
+        }}
+      />
+
+      {/* Ribbon 2 (Secondary Brand Layer) */}
+      <m.span
+        aria-hidden="true"
+        className="absolute inset-y-0 -left-[15%] w-[130%] pointer-events-none z-20 rounded-sm shadow-sm"
+        style={{ backgroundColor: colors[1] }}
+        initial={{ x: "-115%", skewX: "-12deg" }}
+        animate={{ x: ["-115%", "0%", "115%"] }}
+        transition={{
+          duration: 0.88,
+          delay: delay + 0.08,
+          times: [0, 0.48, 1],
+          ease: [0.76, 0, 0.24, 1],
+        }}
+      />
+
+      {/* Ribbon 3 (Accent Finish Layer) */}
+      <m.span
+        aria-hidden="true"
+        className="absolute inset-y-0 -left-[15%] w-[130%] pointer-events-none z-10 rounded-sm shadow-sm"
+        style={{ backgroundColor: colors[2] }}
+        initial={{ x: "-115%", skewX: "-12deg" }}
+        animate={{ x: ["-115%", "0%", "115%"] }}
+        transition={{
+          duration: 0.88,
+          delay: delay + 0.16,
+          times: [0, 0.48, 1],
+          ease: [0.76, 0, 0.24, 1],
+        }}
+      />
+    </span>
+  );
+}
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -84,76 +215,128 @@ export default function Hero() {
               </span>
             </m.div>
 
-            {/* Main Headline */}
+            {/* Main Headline with Canva PPT "Color Wipe" In-Animation */}
             <m.h1 
               variants={itemVariants} 
-              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-[1.1] mb-6 tracking-tight"
+              className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-[1.16] mb-6 tracking-tight flex flex-col items-start gap-y-2 sm:gap-y-3"
             >
-              Manufacturing{" "}
-              <span className="bg-gradient-to-r from-sky-600 via-sky-500 to-indigo-600 bg-clip-text text-transparent">
-                Reliability.
-              </span>
-              <br />
-              Engineering{" "}
-              <span className="bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 bg-clip-text text-transparent">
-                Excellence.
-              </span>
+              {/* Line 1: Manufacturing Reliability. */}
+              <ColorWipeLine 
+                delay={0.15}
+                colors={["#0284c7", "#4f46e5", "#38bdf8"]}
+              >
+                <span>Manufacturing</span>
+                <span className="bg-gradient-to-r from-sky-600 via-sky-500 to-indigo-600 bg-clip-text text-transparent">
+                  Reliability.
+                </span>
+              </ColorWipeLine>
+
+              {/* Line 2: Engineering Excellence. */}
+              <ColorWipeLine 
+                delay={0.42}
+                colors={["#f59e0b", "#ea580c", "#6366f1"]}
+              >
+                <span>Engineering</span>
+                <span className="bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 bg-clip-text text-transparent">
+                  Excellence.
+                </span>
+              </ColorWipeLine>
             </m.h1>
 
-            {/* Description Paragraph */}
+            {/* Description Paragraph (Space Grotesk) */}
             <m.p 
               variants={itemVariants} 
-              className="text-base sm:text-lg text-slate-600 mb-8 max-w-xl leading-relaxed font-normal"
+              className="font-sans text-base sm:text-lg text-slate-600 mb-8 max-w-xl leading-relaxed font-normal tracking-tight"
             >
-              We are an ISO-certified precision manufacturing partner delivering high-reliability components for railway, automotive, power generation, and heavy industrial applications.
+              We are an <span className="text-slate-900 font-semibold">ISO-certified precision manufacturing partner</span> delivering high-reliability components for railway, automotive, power generation, and heavy industrial applications.
             </m.p>
 
-            {/* CTA Buttons */}
+            {/* CTA Buttons with Looping Outline Beam Animation */}
             <m.div 
               variants={itemVariants} 
               className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-10"
             >
+              {/* Primary CTA: Electric Laser Orbit Outline */}
               <Link 
                 href="#capabilities"
-                className="group relative inline-flex items-center justify-center gap-2.5 bg-sky-500 hover:bg-sky-600 text-white px-8 py-4 rounded-xl font-bold transition-[background-color,box-shadow,transform] duration-300 shadow-[0_6px_20px_rgba(14,165,233,0.3)] hover:shadow-[0_10px_28px_rgba(14,165,233,0.45)] scale-100 active:scale-95"
+                className="group relative inline-flex items-center justify-center p-[2px] rounded-2xl overflow-hidden shadow-[0_10px_28px_rgba(14,165,233,0.3)] hover:shadow-[0_16px_40px_rgba(14,165,233,0.55)] transition-[box-shadow,transform] duration-300 hover:scale-[1.02] active:scale-[0.98]"
               >
-                <span className="relative z-10 flex items-center gap-2">
-                  Explore Capabilities
-                  <ArrowRight size={18} className="group-hover:translate-x-1.5 transition-transform duration-300" />
+                {/* 1. Ambient Glow Aura (Blurred background laser comet) */}
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-[-250%] animate-border-spin bg-[conic-gradient(from_0deg_at_50%_50%,transparent_0deg,transparent_270deg,#38bdf8_310deg,#818cf8_335deg,#f59e0b_355deg,#ffffff_360deg)] blur-lg opacity-70 group-hover:opacity-100 group-hover:blur-xl transition-[opacity,filter] duration-500 pointer-events-none"
+                />
+
+                {/* 2. Razor-Sharp Traveling Laser Beam */}
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-[-250%] animate-border-spin bg-[conic-gradient(from_0deg_at_50%_50%,transparent_0deg,transparent_260deg,#0284c7_290deg,#38bdf8_320deg,#818cf8_340deg,#f59e0b_355deg,#ffffff_360deg)] pointer-events-none"
+                />
+
+                {/* 3. Subtle Static Border Track */}
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 rounded-2xl border border-sky-400/40 pointer-events-none"
+                />
+
+                {/* 4. Core Button Interior */}
+                <span className="relative z-10 flex items-center justify-center gap-2.5 bg-gradient-to-r from-sky-500 via-sky-600 to-indigo-600 group-hover:from-sky-600 group-hover:via-sky-500 group-hover:to-indigo-500 text-white px-8 py-4 rounded-[14px] font-bold tracking-wide transition-colors duration-300 overflow-hidden w-full sm:w-auto shadow-inner">
+                  
+                  {/* Internal Specular Glass Flare Reflection */}
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full animate-laser-sweep pointer-events-none"
+                  />
+
+                  {/* Text & Animated Arrow */}
+                  <span className="relative z-10 flex items-center gap-2">
+                    <span>Explore Capabilities</span>
+                    <ArrowRight size={18} className="group-hover:translate-x-1.5 transition-transform duration-300" />
+                  </span>
                 </span>
               </Link>
               
+              {/* Secondary CTA: Precision Dual-Layer Static Outline Design */}
               <Link 
                 href="#contact"
-                className="inline-flex items-center justify-center gap-2.5 bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 hover:border-slate-300 px-8 py-4 rounded-xl font-semibold transition-[background-color,border-color] duration-200 shadow-sm"
+                className="group relative inline-flex items-center justify-center p-[1.5px] rounded-2xl bg-gradient-to-b from-slate-200 via-slate-300 to-slate-200 hover:from-sky-400 hover:via-indigo-400 hover:to-sky-500 shadow-[0_2px_8px_rgba(15,23,42,0.04)] hover:shadow-[0_8px_24px_rgba(14,165,233,0.18)] transition-[background-image,box-shadow,transform] duration-300 hover:scale-[1.02] active:scale-[0.98]"
               >
-                <Phone size={17} className="text-sky-500" />
-                <span>Get a Quote</span>
+                <span className="relative z-10 flex items-center justify-center gap-2.5 bg-white hover:bg-slate-50/90 text-slate-800 px-8 py-4 rounded-[14.5px] font-semibold transition-colors duration-200 w-full sm:w-auto backdrop-blur-md">
+                  <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-sky-50 border border-sky-100/80 text-sky-600 group-hover:bg-sky-500 group-hover:text-white transition-[background-color,border-color,color] duration-300 shadow-xs">
+                    <Phone size={14} className="group-hover:rotate-12 transition-transform duration-300" />
+                  </span>
+                  <span className="text-slate-900 group-hover:text-sky-600 font-bold transition-colors duration-200">
+                    Get a Quote
+                  </span>
+                </span>
               </Link>
             </m.div>
             
-            {/* Key Metrics Strip */}
+            {/* Key Metrics Strip with Counting Animations */}
             <m.div 
               variants={itemVariants} 
               className="grid grid-cols-3 gap-4 sm:gap-6 pt-6 border-t border-slate-100 w-full"
             >
               <div className="flex flex-col">
                 <span className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-                  30<span className="text-sky-500">+</span>
+                  <AnimatedCounter to={30} duration={1.8} />
+                  <span className="text-sky-500">+</span>
                 </span>
                 <span className="text-xs font-medium text-slate-500 mt-0.5">Years Legacy</span>
               </div>
 
               <div className="flex flex-col border-l border-slate-200/80 pl-4 sm:pl-6">
                 <span className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-                  100<span className="text-sky-500">%</span>
+                  <AnimatedCounter to={100} duration={2} />
+                  <span className="text-sky-500">%</span>
                 </span>
                 <span className="text-xs font-medium text-slate-500 mt-0.5">Quality Tested</span>
               </div>
 
               <div className="flex flex-col border-l border-slate-200/80 pl-4 sm:pl-6">
                 <span className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight text-amber-500">
-                  0.005<span className="text-xs font-semibold text-slate-500 ml-0.5">mm</span>
+                  <AnimatedCounter to={0.005} decimals={3} duration={1.8} />
+                  <span className="text-xs font-semibold text-slate-500 ml-0.5">mm</span>
                 </span>
                 <span className="text-xs font-medium text-slate-500 mt-0.5">Micron Accuracy</span>
               </div>

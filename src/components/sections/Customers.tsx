@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
 
 type Brand = { name: string; image: string };
 type ClonedBrand = Brand & { uniqueKey: string };
@@ -47,26 +46,16 @@ function BrandCard({ customer }: { customer: Brand }) {
   );
 }
 
+// Precomputed marquee tracks for optimal rendering performance without cascading renders
+const track1 = allBrands.slice(0, 4);
+const track2 = allBrands.slice(4, 8);
+const track3 = allBrands.slice(8, 12);
+
+const items1 = createMarquee(track1, "t1");
+const items2 = createMarquee(track2, "t2");
+const items3 = createMarquee(track3, "t3");
+
 export default function Customers() {
-  const [tracks, setTracks] = useState({
-    t1: allBrands.slice(0, 4),
-    t2: allBrands.slice(4, 8),
-    t3: allBrands.slice(8, 12)
-  });
-
-  useEffect(() => {
-    // Randomly shuffle brands on client mount so it's different every page load
-    const shuffled = [...allBrands].sort(() => Math.random() - 0.5);
-    setTracks({
-      t1: shuffled.slice(0, 4),
-      t2: shuffled.slice(4, 8),
-      t3: shuffled.slice(8, 12)
-    });
-  }, []);
-
-  const items1 = createMarquee(tracks.t1, "t1");
-  const items2 = createMarquee(tracks.t2, "t2");
-  const items3 = createMarquee(tracks.t3, "t3");
 
   return (
     <section id="customers" className="py-20 bg-white overflow-hidden border-y border-gray-200 relative">
