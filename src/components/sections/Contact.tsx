@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Send, MapPin, Phone, Mail, Award } from "lucide-react";
 import { m } from "framer-motion";
+import emailjs from '@emailjs/browser';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -18,15 +19,32 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus("idle");
     
-    // Simulate server action
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setIsSubmitting(false);
-    setSubmitStatus("success");
-    setFormData({ name: "", email: "", phone: "", company: "", message: "" });
-    
-    setTimeout(() => setSubmitStatus("idle"), 5000);
+    try {
+      // Send the email using EmailJS
+      await emailjs.send(
+        "service_c1k7fzt",
+        "template_nn998cq",
+        {
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          message: formData.message,
+        },
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "YOUR_PUBLIC_KEY_HERE"
+      );
+      
+      setSubmitStatus("success");
+      setFormData({ name: "", email: "", phone: "", company: "", message: "" });
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      setSubmitStatus("error");
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => setSubmitStatus("idle"), 5000);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

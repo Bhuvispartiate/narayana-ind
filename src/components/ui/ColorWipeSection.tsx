@@ -32,38 +32,32 @@ export function ColorWipeSection({
       id={id}
       className={`relative w-full overflow-hidden ${className}`}
     >
-      {/* ── Section Content unveiled by left-to-right Canva Color Wipe ── */}
+      {/* ── Section Content unveiled by simple fade ── */}
       <m.div
         initial={{
-          clipPath: "inset(0 100% 0 0)",
           opacity: 0,
-          y: 12,
+          y: 20,
         }}
         animate={
           isInView
             ? {
-                clipPath: "inset(0 0% 0 0)",
                 opacity: 1,
                 y: 0,
               }
             : {
-                clipPath: "inset(0 100% 0 0)",
                 opacity: 0,
-                y: 12,
+                y: 20,
               }
         }
         transition={{
-          duration: 0.82,
-          delay: delay + 0.28,
-          ease: [0.22, 1, 0.36, 1],
+          duration: 0.6,
+          delay: delay + 0.15,
+          ease: "easeOut",
         }}
         onAnimationComplete={() => {
           if (isInView) {
             setAnimationCompleted(true);
           }
-        }}
-        style={{
-          clipPath: animationCompleted ? "none" : undefined,
         }}
         className="w-full relative z-0"
       >
@@ -76,45 +70,45 @@ export function ColorWipeSection({
           {/* Ribbon 1 (Lead Brand Color) */}
           <m.div
             aria-hidden="true"
-            className="absolute inset-y-0 -left-[20%] w-[140%] pointer-events-none z-30 shadow-2xl"
-            style={{ backgroundColor: colors[0] }}
+            className="absolute inset-y-0 -left-[20%] w-[140%] pointer-events-none z-30"
+            style={{ backgroundColor: colors[0], willChange: "transform" }}
             initial={{ x: "-120%", skewX: "-10deg" }}
             animate={isInView ? { x: ["-120%", "0%", "120%"] } : { x: "-120%" }}
             transition={{
-              duration: 0.95,
+              duration: 0.7,
               delay: delay,
-              times: [0, 0.48, 1],
-              ease: [0.76, 0, 0.24, 1],
+              times: [0, 0.5, 1],
+              ease: "easeInOut",
             }}
           />
 
           {/* Ribbon 2 (Secondary Brand Color) */}
           <m.div
             aria-hidden="true"
-            className="absolute inset-y-0 -left-[20%] w-[140%] pointer-events-none z-20 shadow-2xl"
-            style={{ backgroundColor: colors[1] }}
+            className="absolute inset-y-0 -left-[20%] w-[140%] pointer-events-none z-20"
+            style={{ backgroundColor: colors[1], willChange: "transform" }}
             initial={{ x: "-120%", skewX: "-10deg" }}
             animate={isInView ? { x: ["-120%", "0%", "120%"] } : { x: "-120%" }}
             transition={{
-              duration: 0.95,
+              duration: 0.7,
               delay: delay + 0.08,
-              times: [0, 0.48, 1],
-              ease: [0.76, 0, 0.24, 1],
+              times: [0, 0.5, 1],
+              ease: "easeInOut",
             }}
           />
 
           {/* Ribbon 3 (Accent Brand Color) */}
           <m.div
             aria-hidden="true"
-            className="absolute inset-y-0 -left-[20%] w-[140%] pointer-events-none z-10 shadow-2xl"
-            style={{ backgroundColor: colors[2] }}
+            className="absolute inset-y-0 -left-[20%] w-[140%] pointer-events-none z-10"
+            style={{ backgroundColor: colors[2], willChange: "transform" }}
             initial={{ x: "-120%", skewX: "-10deg" }}
             animate={isInView ? { x: ["-120%", "0%", "120%"] } : { x: "-120%" }}
             transition={{
-              duration: 0.95,
+              duration: 0.7,
               delay: delay + 0.16,
-              times: [0, 0.48, 1],
-              ease: [0.76, 0, 0.24, 1],
+              times: [0, 0.5, 1],
+              ease: "easeInOut",
             }}
           />
         </>

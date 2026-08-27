@@ -8,12 +8,12 @@ const teamMembers = [
   { name: "Mr. Sekar N", role: "Director / Partner", image: "/images/ProfileImages/nSekar.jpg" },
   { name: "Mr. Manimurugan M", role: "General Manager Operations", image: "/images/ProfileImages/Mr. Manimurugan R.jpg" },
   { name: "Mr. Gnanasekar K", role: "General Manager Planning", image: "/images/ProfileImages/Gnanasekar.jpg" },
-  { name: "Mr. Kesavan", role: "Supervisor", image: "" },
+  { name: "Mr. Kesavan", role: "Supervisor", image: "/images/ProfileImages/Kesavan.jpg" },
   { name: "Mr. Santhosh S", role: "R&D Head", image: "/images/ProfileImages/Santhosh.jpg" },
   { name: "Mrs. Priyal Santhosh", role: "GM Marketing", image: "/images/ProfileImages/Priyal.jpg" },
-  { name: "Mrs. Rajeswari", role: "Accounting Manager", image: "" },
-  { name: "Mrs. Parameshwari", role: "Staff Accountant", image: "" },
-  { name: "Mrs. Devi", role: "Marketing Team Lead", image: "" },
+  { name: "Mrs. Rajeswari", role: "Accounting Manager", image: "/images/ProfileImages/Rajeswari.jpg" },
+  { name: "Mrs. Parameshwari", role: "Staff Accountant", image: "/images/ProfileImages/Prameshwari.jpg" },
+  { name: "Mrs. Devi", role: "Marketing Team Lead", image: "/images/ProfileImages/Devi.jpg" },
   { name: "QC Team", role: "Quality Control", image: "/images/ProfileImages/qc team.jpg", wide: true },
   { name: "Admin & HR Team", role: "Administration & Human Resources", image: "/images/ProfileImages/Admin & HR team.jpg", wide: true },
 ];
@@ -35,7 +35,7 @@ export default function Team() {
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-8">
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-8">
           {teamMembers.map((member, index) => (
             <m.div
               key={member.name}
@@ -46,7 +46,7 @@ export default function Team() {
               className={`relative group rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-[box-shadow,border-color] duration-500 bg-slate-100 ${
                 member.wide 
                   ? "w-full sm:w-full lg:w-[calc(40%-1rem)]" 
-                  : "w-full sm:w-[calc(50%-1rem)] lg:w-[calc(20%-1.6rem)]"
+                  : "w-[calc(50%-0.5rem)] sm:w-[calc(50%-1rem)] lg:w-[calc(20%-1.6rem)]"
               }`}
             >
               {/* Large Portrait Image Placeholder or Actual Image */}
@@ -74,9 +74,9 @@ export default function Team() {
               </div>
 
               {/* Content Floating on Bottom */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col items-center text-center transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                <h3 className="text-xl font-bold text-white mb-1">{member.name}</h3>
-                <p className="text-sm font-medium text-sky-400 mb-2">{member.role}</p>
+              <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-6 flex flex-col items-center text-center transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                <h3 className="text-xs sm:text-lg lg:text-xl font-bold text-white mb-0.5 sm:mb-1">{member.name}</h3>
+                <p className="text-[10px] sm:text-sm font-medium text-sky-400 mb-1 sm:mb-2 leading-tight">{member.role}</p>
               </div>
               
               {/* Accent Border Glow */}
