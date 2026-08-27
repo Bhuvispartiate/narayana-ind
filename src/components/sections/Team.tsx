@@ -5,11 +5,15 @@ import { User } from "lucide-react";
 import Image from "next/image";
 
 const teamMembers = [
-  { name: "Mr. Sekar N", role: "Partner", image: "/images/ProfileImages/nSekar.jpg" },
-  { name: "Mr. Manimurugan R", role: "GM", image: "/images/ProfileImages/Mr. Manimurugan R.jpg" },
-  { name: "Mr. Gnanasekaran K", role: "GM", image: "/images/ProfileImages/Gnanasekar.jpg" },
-  { name: "Mr. Santhosh S", role: "Techno Commercial Engineer", image: "/images/ProfileImages/Santhosh.jpg" },
-  { name: "Priyal", role: "Management", image: "/images/ProfileImages/Priyal.jpg" },
+  { name: "Mr. Sekar N", role: "Director / Partner", image: "/images/ProfileImages/nSekar.jpg" },
+  { name: "Mr. Manimurugan M", role: "General Manager Operations", image: "/images/ProfileImages/Mr. Manimurugan R.jpg" },
+  { name: "Mr. Gnanasekar K", role: "General Manager Planning", image: "/images/ProfileImages/Gnanasekar.jpg" },
+  { name: "Mr. Kesavan", role: "Supervisor", image: "" },
+  { name: "Mr. Santhosh S", role: "R&D Head", image: "/images/ProfileImages/Santhosh.jpg" },
+  { name: "Mrs. Priyal Santhosh", role: "GM Marketing", image: "/images/ProfileImages/Priyal.jpg" },
+  { name: "Mrs. Rajeswari", role: "Accounting Manager", image: "" },
+  { name: "Mrs. Parameshwari", role: "Staff Accountant", image: "" },
+  { name: "Mrs. Devi", role: "Marketing Team Lead", image: "" },
   { name: "QC Team", role: "Quality Control", image: "/images/ProfileImages/qc team.jpg", wide: true },
   { name: "Admin & HR Team", role: "Administration & Human Resources", image: "/images/ProfileImages/Admin & HR team.jpg", wide: true },
 ];

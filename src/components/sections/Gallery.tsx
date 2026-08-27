@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
 import { m, AnimatePresence } from "framer-motion";
 import { Maximize2, X, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
@@ -12,19 +13,12 @@ const galleryItems = [
     id: 1,
     src: "/images/GalleryImages/facility-1.jpg",
     alt: "Facility Image 1",
-    // 2x2 Hero tile on desktop & tablet
     gridClasses: "col-span-1 sm:col-span-2 sm:row-span-2 md:col-span-2 md:row-span-2 min-h-[300px] sm:min-h-[500px]",
   },
   {
     id: 2,
     src: "/images/GalleryImages/facility-2.jpg",
     alt: "Facility Image 2",
-    gridClasses: "col-span-1 sm:col-span-1 sm:row-span-1 md:col-span-1 md:row-span-1 min-h-[240px]",
-  },
-  {
-    id: 3,
-    src: "/images/GalleryImages/facility-3.jpg",
-    alt: "Facility Image 3",
     gridClasses: "col-span-1 sm:col-span-1 sm:row-span-1 md:col-span-1 md:row-span-1 min-h-[240px]",
   },
   {
@@ -43,7 +37,6 @@ const galleryItems = [
     id: 6,
     src: "/images/GalleryImages/facility-6.jpg",
     alt: "Facility Image 6",
-    // Wide 2x1 banner tile
     gridClasses: "col-span-1 sm:col-span-2 sm:row-span-1 md:col-span-2 md:row-span-1 min-h-[240px]",
   },
   {
@@ -53,18 +46,16 @@ const galleryItems = [
     gridClasses: "col-span-1 sm:col-span-1 sm:row-span-1 md:col-span-1 md:row-span-1 min-h-[240px]",
   },
   {
-    // facility-9 is the vertical portrait photo (5304x7952, 2:3)
-    id: 9,
-    src: "/images/GalleryImages/facility-9.jpg",
-    alt: "Facility Image 9",
-    // 1x2 Tall Portrait tile matching its native 2:3 aspect ratio!
-    gridClasses: "col-span-1 sm:col-span-1 sm:row-span-2 md:col-span-1 md:row-span-2 min-h-[300px] sm:min-h-[500px]",
-  },
-  {
     id: 8,
     src: "/images/GalleryImages/facility-8.jpg",
     alt: "Facility Image 8",
     gridClasses: "col-span-1 sm:col-span-1 sm:row-span-1 md:col-span-1 md:row-span-1 min-h-[240px]",
+  },
+  {
+    id: 9,
+    src: "/images/GalleryImages/facility-9.jpg",
+    alt: "Facility Image 9",
+    gridClasses: "col-span-1 sm:col-span-1 sm:row-span-2 md:col-span-1 md:row-span-2 min-h-[300px] sm:min-h-[500px]",
   },
   {
     id: 10,
@@ -76,12 +67,17 @@ const galleryItems = [
     id: 11,
     src: "/images/GalleryImages/facility-11.jpg",
     alt: "Facility Image 11",
-    gridClasses: "col-span-1 sm:col-span-1 sm:row-span-1 md:col-span-1 md:row-span-1 min-h-[240px]",
+    gridClasses: "col-span-1 sm:col-span-2 sm:row-span-1 md:col-span-2 md:row-span-1 min-h-[240px]",
   },
 ];
 
 export default function Gallery() {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const handleNext = useCallback(() => {
     setSelectedIndex((prev) => (prev === null ? null : (prev + 1) % galleryItems.length));
@@ -144,7 +140,7 @@ export default function Gallery() {
         </div>
 
         {/* Hierarchical Bento Grid (Seamless 4x4 on Desktop, 2-Col on Tablet, 1-Col on Mobile) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 auto-rows-[240px] sm:auto-rows-[250px] md:auto-rows-[260px] lg:auto-rows-[280px] gap-4 sm:gap-5 lg:gap-6">
+        <div className="grid grid-flow-dense grid-cols-1 sm:grid-cols-2 md:grid-cols-4 auto-rows-[240px] sm:auto-rows-[250px] md:auto-rows-[260px] lg:auto-rows-[280px] gap-4 sm:gap-5 lg:gap-6">
           {galleryItems.map((item, index) => (
             <m.div 
               key={item.id}
@@ -189,10 +185,11 @@ export default function Gallery() {
       </div>
 
       {/* Lightbox Modal */}
-      <AnimatePresence>
-        {selectedIndex !== null && (
-          <m.div
-            initial={{ opacity: 0 }}
+      {isMounted && createPortal(
+        <AnimatePresence>
+          {selectedIndex !== null && (
+            <m.div
+              initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
@@ -258,7 +255,9 @@ export default function Gallery() {
             </m.div>
           </m.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence>,
+      document.body
+      )}
     </section>
   );
 }

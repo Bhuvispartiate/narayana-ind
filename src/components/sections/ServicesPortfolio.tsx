@@ -68,7 +68,7 @@ const productsData: Product[] = [
     ],
     certifications: ["ISO 9001:2015", "CE Compliant Architecture", "In-House QA Tested"]
   },
-  {
+  /* {
     id: 2,
     title: "Railway Air Spring Suspension Metal Parts",
     category: "Railway & Metro",
@@ -129,7 +129,7 @@ const productsData: Product[] = [
       "Special Heavy Haulage Transport"
     ],
     certifications: ["ISO 9001:2015", "OEM Automotive Quality Audited"]
-  },
+  }, */
   {
     id: 3,
     title: "Boiler Pressure Parts & Steam Piping",
