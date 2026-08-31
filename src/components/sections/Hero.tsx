@@ -162,7 +162,7 @@ export default function Hero() {
             >
               {/* Primary CTA: Electric Laser Orbit Outline */}
               <Link 
-                href="#capabilities"
+                href="/capabilities"
                 className="group relative inline-flex items-center justify-center p-[2px] rounded-2xl overflow-hidden shadow-[0_10px_28px_rgba(14,165,233,0.3)] hover:shadow-[0_16px_40px_rgba(14,165,233,0.55)] transition-[box-shadow,transform] duration-300 hover:scale-[1.02] active:scale-[0.98]"
               >
                 {/* 1. Ambient Glow Aura (Blurred background laser comet) */}
@@ -202,7 +202,7 @@ export default function Hero() {
               
               {/* Secondary CTA: Precision Dual-Layer Static Outline Design */}
               <Link 
-                href="#contact"
+                href="/contact"
                 className="group relative inline-flex items-center justify-center p-[1.5px] rounded-2xl bg-gradient-to-b from-slate-200 via-slate-300 to-slate-200 hover:from-sky-400 hover:via-indigo-400 hover:to-sky-500 shadow-[0_2px_8px_rgba(15,23,42,0.04)] hover:shadow-[0_8px_24px_rgba(14,165,233,0.18)] transition-[background-image,box-shadow,transform] duration-300 hover:scale-[1.02] active:scale-[0.98]"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2.5 bg-white hover:bg-slate-50/90 text-slate-800 px-8 py-4 rounded-[14.5px] font-semibold transition-colors duration-200 w-full sm:w-auto backdrop-blur-md">
@@ -265,7 +265,6 @@ export default function Hero() {
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   priority
-                  quality={100}
                   className="object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
                 

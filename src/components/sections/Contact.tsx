@@ -168,7 +168,12 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-slate-200 mb-1">Email</h4>
-                    <a href="mailto:operations@niorg.in" className="text-slate-300 hover:text-white transition-colors">operations@niorg.in</a>
+                    <span 
+                      onClick={() => window.location.href = `mailto:${'operations'}@${'niorg.in'}`}
+                      className="text-slate-300 hover:text-white transition-colors cursor-pointer"
+                    >
+                      {'operations'}@{'niorg.in'}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -181,7 +186,7 @@ export default function Contact() {
                 src="https://maps.google.com/maps?q=10.813054942642852,78.76756481888016&t=&z=15&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="100%"
-                style={{ border: 0 }}
+                className="border-0"
                 allowFullScreen
                 loading="lazy"
                 sandbox="allow-scripts allow-popups"

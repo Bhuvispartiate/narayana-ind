@@ -6,21 +6,28 @@ import Link from "next/link";
 import { Menu, X, Phone } from "lucide-react";
 import { clsx } from "clsx";
 
-const navLinks = [
-  { name: "About", href: "#about" },
-  { name: "Capabilities", href: "#capabilities" },
-  { name: "Gallery", href: "#gallery" },
-  { name: "Quality", href: "#quality" },
-  { name: "Products", href: "#products" },
-  { name: "Customers", href: "#customers" },
-  { name: "Team", href: "#team" },
-  { name: "Contact", href: "#contact" },
+import { usePathname } from "next/navigation";
+
+const baseNavLinks = [
+  { name: "About", href: "/about" },
+  { name: "Capabilities", href: "/capabilities" },
+  { name: "Gallery", href: "/gallery" },
+  { name: "Products", href: "/products" },
+  { name: "Team", href: "/team" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const ticking = useRef(false);
+  const pathname = usePathname();
+  
+  const navLinks = pathname === "/" 
+    ? baseNavLinks 
+    : [{ name: "Home", href: "/" }, ...baseNavLinks];
+
+  const isDarkTheme = pathname !== "/" && !isScrolled;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,7 +59,7 @@ export default function Navbar() {
 
           {/* ── Logo ── */}
           <Link
-            href="#"
+            href="/"
             className={clsx(
               "absolute top-1/2 -translate-y-1/2 flex items-center gap-2 z-10",
               "transition-[left,transform] duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)]",
@@ -76,7 +83,7 @@ export default function Navbar() {
             </div>
 
             {/* Brand text block */}
-            <div className="relative ml-1 select-none" style={{ width: "13rem", height: "2.5rem" }}>
+            <div className="relative ml-1 select-none w-[13rem] h-10">
 
               {/* Stacked state (not scrolled) */}
               <div
@@ -88,10 +95,10 @@ export default function Navbar() {
                   pointerEvents: isScrolled ? "none" : "auto",
                 }}
               >
-                <span className="font-bold text-lg leading-none tracking-tight text-slate-900">
+                <span className={clsx("font-bold text-lg leading-none tracking-tight", isDarkTheme ? "text-white" : "text-slate-900")}>
                   NARAYANA
                 </span>
-                <span className="text-[9px] font-semibold tracking-[0.22em] text-slate-600 leading-none mt-0.5">
+                <span className={clsx("text-[9px] font-semibold tracking-[0.22em] leading-none mt-0.5", isDarkTheme ? "text-slate-300" : "text-slate-600")}>
                   INDUSTRIES
                 </span>
               </div>
@@ -106,10 +113,10 @@ export default function Navbar() {
                   pointerEvents: isScrolled ? "auto" : "none",
                 }}
               >
-                <span className="font-bold text-lg leading-none tracking-tight text-slate-900">
+                <span className={clsx("font-bold text-lg leading-none tracking-tight", isDarkTheme ? "text-white" : "text-slate-900")}>
                   NARAYANA
                 </span>
-                <span className="text-lg font-semibold leading-none tracking-tight text-slate-700">
+                <span className={clsx("text-lg font-semibold leading-none tracking-tight", isDarkTheme ? "text-slate-200" : "text-slate-700")}>
                   INDUSTRIES
                 </span>
               </div>
@@ -134,7 +141,10 @@ export default function Navbar() {
               >
                 <Link
                   href={link.href}
-                  className="group/navlink relative py-1 text-sm font-semibold text-slate-800 transition-colors duration-200 hover:text-sky-600 inline-flex flex-col items-start"
+                  className={clsx(
+                    "group/navlink relative py-1 text-sm font-semibold transition-colors duration-200 inline-flex flex-col items-start",
+                    isDarkTheme ? "text-white/90 hover:text-white" : "text-slate-800 hover:text-sky-600"
+                  )}
                 >
                   <span>{link.name}</span>
                   {/* Drawing Stroke Underline Beam (Left to Right) */}
@@ -166,7 +176,12 @@ export default function Navbar() {
             >
               <a
                 href="tel:+919003950427"
-                className="flex items-center gap-2 px-4 py-2 rounded-md font-medium text-sm bg-slate-900 text-white shadow-sm transition-[background-color,box-shadow] duration-200 hover:bg-sky-500 hover:shadow-md"
+                className={clsx(
+                  "flex items-center gap-2 px-4 py-2 rounded-md font-medium text-sm shadow-sm transition-[background-color,box-shadow,color] duration-200 hover:shadow-md",
+                  isDarkTheme 
+                    ? "bg-white text-slate-900 hover:bg-slate-100 hover:text-sky-600" 
+                    : "bg-slate-900 text-white hover:bg-sky-500"
+                )}
               >
                 <Phone size={16} />
                 <span>Call Us</span>
@@ -178,7 +193,10 @@ export default function Navbar() {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 rounded-md text-slate-900 transition-colors duration-150 hover:bg-slate-100"
+              className={clsx(
+                "p-2 rounded-md transition-colors duration-150",
+                isDarkTheme ? "text-white hover:bg-white/10" : "text-slate-900 hover:bg-slate-100"
+              )}
               aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             >
               <span

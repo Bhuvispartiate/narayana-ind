@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { Mail, Phone, MapPin, Award } from "lucide-react";
@@ -39,9 +41,9 @@ export default function Footer() {
               Quick Links
             </h3>
             <ul className="space-y-3">
-              {['About', 'Capabilities', 'Quality', 'Products', 'Customers', 'Team', 'Contact'].map((link) => (
+              {['Customers', 'About', 'Capabilities', 'Gallery', 'Quality', 'Products', 'Team', 'Contact'].map((link) => (
                 <li key={link}>
-                  <Link href={`#${link.toLowerCase()}`} className="text-sm hover:text-sky-400 transition-colors flex items-center gap-2">
+                  <Link href={`/${link.toLowerCase()}`} className="text-sm hover:text-sky-400 transition-colors flex items-center gap-2">
                     <span className="text-sky-500">›</span> {link}
                   </Link>
                 </li>
@@ -95,10 +97,13 @@ export default function Footer() {
                 <Phone className="text-sky-500" size={18} />
                 <span>+91 7904708300</span>
               </a>
-              <a href="mailto:operations@niorg.in" className="flex items-center gap-3 hover:text-sky-400 transition-colors">
+              <span 
+                onClick={() => window.location.href = `mailto:${'operations'}@${'niorg.in'}`}
+                className="flex items-center gap-3 hover:text-sky-400 transition-colors cursor-pointer"
+              >
                 <Mail className="text-sky-500" size={18} />
-                <span>operations@niorg.in</span>
-              </a>
+                <span>{'operations'}@{'niorg.in'}</span>
+              </span>
               
               <div className="pt-4 mt-4 border-t border-slate-800">
                 <p className="text-xs text-slate-500 font-mono">GSTIN: 33AAWFN9252H1ZQ</p>

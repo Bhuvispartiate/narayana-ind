@@ -68,7 +68,7 @@ const productsData: Product[] = [
     ],
     certifications: ["ISO 9001:2015", "CE Compliant Architecture", "In-House QA Tested"]
   },
-  /* {
+  {
     id: 2,
     title: "Railway Air Spring Suspension Metal Parts",
     category: "Railway & Metro",
@@ -99,7 +99,7 @@ const productsData: Product[] = [
     ],
     certifications: ["EN 15085-2 CL1", "ISO 3834-2:2021", "ISO 9001:2015"]
   },
-  {
+  /* {
     id: 1,
     title: "Piston for Air Spring System",
     category: "Automotive",
