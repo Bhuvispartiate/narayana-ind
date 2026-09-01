@@ -68,6 +68,9 @@ export const metadata: Metadata = {
     title: "Narayana Industries | Precision Manufacturing & Engineering",
     description: "Engineering Reliability. Precision Manufacturing. Trusted Quality. ISO-certified.",
   },
+  verification: {
+    google: "PjyKxJb4BQdHK4kqMt1bHwGt7UMr0e1uY9wicjJUl38",
+  },
 };
 
 const jsonLd = {
