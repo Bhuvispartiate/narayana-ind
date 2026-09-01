@@ -7,6 +7,9 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "About Us | Narayana Industries",
   description: "Learn about our 30+ year legacy in precision manufacturing.",
+  verification: {
+    google: "PjyKxJb4BQdHK4kqMt1bHwGt7UMr0e1uY9wicjJUl38",
+  },
 };
 
 export default function AboutPage() {

@@ -6,6 +6,9 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Leadership & Team | Narayana Industries",
   description: "Meet the experts behind our precision engineering excellence.",
+  verification: {
+    google: "PjyKxJb4BQdHK4kqMt1bHwGt7UMr0e1uY9wicjJUl38",
+  },
 };
 
 export default function TeamPage() {

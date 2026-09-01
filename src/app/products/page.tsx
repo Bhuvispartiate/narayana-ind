@@ -6,6 +6,9 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Products & Services | Narayana Industries",
   description: "Our portfolio of heavy fabrication, precision machining, and specialized services.",
+  verification: {
+    google: "PjyKxJb4BQdHK4kqMt1bHwGt7UMr0e1uY9wicjJUl38",
+  },
 };
 
 export default function ProductsPage() {

@@ -6,6 +6,9 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Gallery | Narayana Industries",
   description: "View our manufacturing facility, machinery, and products.",
+  verification: {
+    google: "PjyKxJb4BQdHK4kqMt1bHwGt7UMr0e1uY9wicjJUl38",
+  },
 };
 
 export default function GalleryPage() {
