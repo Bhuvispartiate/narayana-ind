@@ -12,6 +12,7 @@ import {
   Sparkles, 
   Layers,
   ChevronRight,
+  ChevronLeft,
   Eye
 } from "lucide-react";
 import { m, AnimatePresence } from "framer-motion";
@@ -22,6 +23,7 @@ export type Product = {
   category: "Automotive" | "Railway & Metro" | "Power & Boilers" | "Structural" | "Special Machinery";
   categoryLabel: string;
   image: string;
+  images?: string[];
   tag: string;
   isFeatured?: boolean;
   shortDesc: string;
@@ -99,28 +101,33 @@ const productsData: Product[] = [
     ],
     certifications: ["EN 15085-2 CL1", "ISO 3834-2:2021", "ISO 9001:2015"]
   },
-  /* {
+  {
     id: 1,
-    title: "Piston for Air Spring System",
+    title: "180 mm Piston for Air Spring System",
     category: "Automotive",
     categoryLabel: "Automotive & Commercial Vehicles",
-    image: "/images/Products/product3.jpg",
+    image: "/images/Products/PISTON 180 mm TOP.jpeg",
+    images: [
+      "/images/Products/PISTON 180 mm TOP.jpeg",
+      "/images/Products/PISTON 180 mm BOTTOM.jpeg"
+    ],
     tag: "Automotive OEM Tier-1",
     isFeatured: false,
-    shortDesc: "High-durability lightweight aluminum alloy and precision steel pistons engineered for commercial buses, haulers, and trailers.",
-    fullDesc: "Precision-turned and hard-anodized air spring pistons crafted for commercial vehicle air suspension. Designed for lightweight efficiency, structural rigidity under extreme bump loads, and leak-tight pneumatic sealing.",
+    shortDesc: "High-durability precision-formed and machined steel 180 mm pistons engineered for commercial buses, haulers, and trailers.",
+    fullDesc: "Precision-turned and yellow-zinc passivated 180 mm air spring pistons crafted for commercial vehicle pneumatic suspension. Designed for structural rigidity under extreme bump loads, dynamic damping response, and leak-tight sealing.",
     specs: [
+      { label: "Nominal Diameter", value: "Ø180 mm Profile" },
       { label: "Tolerance Range", value: "±0.015 mm CNC Turned" },
-      { label: "Material Composition", value: "High-Grade Aircraft Alloy / Forged Steel" },
+      { label: "Material Composition", value: "High-Grade Deep Drawn Alloy Steel" },
       { label: "Pressure Testing", value: "100% Leak Tested @ 25 Bar" },
-      { label: "Surface Finish", value: "Ra 0.4 μm Hard Anodized" },
-      { label: "Weight Optimization", value: "Engineered Low Inertia Profile" },
+      { label: "Surface Finish", value: "Yellow Zinc Passivated / Plated" },
+      { label: "Weight Optimization", value: "Engineered Low-Inertia Profile" },
     ],
     keyFeatures: [
       "100% automated dimensional inspection on critical seal diameters",
-      "Advanced surface treatment for maximum resistance to road salts and gravel",
-      "Optimized internal ribbing for high strength-to-weight ratio",
-      "High volume production capacity for Tier-1 automotive supply"
+      "Advanced surface passivated treatment for resistance to road salts and gravel",
+      "Precision-machined internal cavity for optimized strength-to-weight ratio",
+      "Supplied in high-volume production for leading Tier-1 automotive suspension OEMs"
     ],
     applications: [
       "Heavy Commercial Trucks (Multi-Axle)",
@@ -128,8 +135,44 @@ const productsData: Product[] = [
       "Semi-Trailer Air Suspension Systems",
       "Special Heavy Haulage Transport"
     ],
-    certifications: ["ISO 9001:2015", "OEM Automotive Quality Audited"]
-  }, */
+    certifications: ["ISO 9001:2015", "OEM Automotive Quality Audited", "100% Pressure Proof Tested"]
+  },
+  {
+    id: 7,
+    title: "Bead Plate for Air Spring System",
+    category: "Automotive",
+    categoryLabel: "Automotive & Commercial Vehicles",
+    image: "/images/Products/BEAD PLATE TOP.jpeg",
+    images: [
+      "/images/Products/BEAD PLATE TOP.jpeg",
+      "/images/Products/BEAD PLATE BOTTOM.jpeg"
+    ],
+    tag: "Automotive OEM Tier-1",
+    isFeatured: false,
+    shortDesc: "Heavy-gauge stamped and formed steel bead plates with integrated mounting studs and pneumatic air inlet ports.",
+    fullDesc: "High-precision formed bead plates engineered for pneumatic air suspension assemblies. Deep-drawn from high-tensile carbon steel with projection-welded mounting studs and corrosion-resistant plating, ensuring zero-leak bellow sealing and high fatigue life under continuous dynamic vibrations.",
+    specs: [
+      { label: "Material Grade", value: "High-Tensile Cold Rolled Steel" },
+      { label: "Forming Process", value: "Deep Drawn & Precision Stamped" },
+      { label: "Air Inlet / Studs", value: "Projection Welded M10/M12 Studs" },
+      { label: "Corrosion Protection", value: "Zinc Plated / Anti-Corrosion Dip" },
+      { label: "Pressure Rating", value: "Leak Tested to 25+ Bar" },
+      { label: "Sealing Interface", value: "Roll-Crimped Rim Geometry" },
+    ],
+    keyFeatures: [
+      "Precision roll-crimped rim providing an airtight lock with air spring bellows",
+      "High-shear projection welded mounting studs with 100% torque testing",
+      "Corrosion-resistant protective coating tested for severe road environmental exposure",
+      "Manufactured to strict commercial vehicle OEM drawing tolerances"
+    ],
+    applications: [
+      "Commercial Bus Air Suspension Systems",
+      "Multi-Axle Truck Bellow Mounting Assemblies",
+      "Semi-Trailer Air Ride Suspensions",
+      "Industrial Pneumatic Isolators"
+    ],
+    certifications: ["ISO 9001:2015", "OEM Automotive Quality Audited", "Torque & Weld NDT Verified"]
+  },
   {
     id: 3,
     title: "Boiler Pressure Parts & Steam Piping",
@@ -234,6 +277,136 @@ const categories = [
   { id: "Structural", label: "Structural", count: productsData.filter(p => p.category === "Structural").length },
 ];
 
+// Subcomponent: Dedicated Uncropped Product Image Carousel
+function ProductImageCarousel({
+  images,
+  title,
+  containerClassName = "h-full"
+}: {
+  images: string[];
+  title: string;
+  containerClassName?: string;
+}) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // If only 1 image, render clean full frame without carousel controls
+  if (images.length <= 1) {
+    return (
+      <div className={`relative w-full rounded-2xl overflow-hidden bg-slate-50 border border-slate-200/90 shadow-inner group p-4 flex items-center justify-center transition-all hover:border-sky-300 ${containerClassName}`}>
+        <Image
+          src={images[0]}
+          alt={title}
+          fill
+          priority
+          sizes="(max-width: 1024px) 100vw, 40vw"
+          className="object-contain transition-transform duration-500 group-hover:scale-105"
+        />
+      </div>
+    );
+  }
+
+  const currentImg = images[currentIndex];
+  const isTop = currentImg.toLowerCase().includes("top");
+  const isBottom = currentImg.toLowerCase().includes("bottom");
+  const viewLabel = isTop ? "Top View" : isBottom ? "Bottom View" : `Angle ${currentIndex + 1}`;
+
+  const handlePrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  };
+
+  return (
+    <div className={`relative flex flex-col rounded-2xl overflow-hidden bg-slate-50 border border-slate-200/90 shadow-inner group p-3 transition-all hover:border-sky-300 ${containerClassName}`}>
+      {/* Top Header Bar inside carousel card */}
+      <div className="flex items-center justify-between pb-2 px-1 border-b border-slate-200/70 mb-2 shrink-0">
+        <div className="flex items-center gap-1.5">
+          <span className="w-2 h-2 rounded-full bg-sky-500 animate-pulse" />
+          <span className="text-[11px] font-extrabold uppercase tracking-wider text-slate-800">
+            {viewLabel}
+          </span>
+        </div>
+        <span className="text-[10px] font-bold text-slate-600 bg-white px-2 py-0.5 rounded-full border border-slate-200 shadow-xs">
+          {currentIndex + 1} of {images.length}
+        </span>
+      </div>
+
+      {/* Main Image Area with Prev / Next Arrow buttons */}
+      <div className="relative flex-1 w-full min-h-[190px] flex items-center justify-center overflow-hidden">
+        <AnimatePresence mode="wait">
+          <m.div
+            key={currentImg}
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.96 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            className="relative w-full h-full"
+          >
+            <Image
+              src={currentImg}
+              alt={`${title} - ${viewLabel}`}
+              fill
+              sizes="(max-width: 1024px) 100vw, 40vw"
+              className="object-contain transition-transform duration-500 group-hover:scale-105"
+            />
+          </m.div>
+        </AnimatePresence>
+
+        {/* Carousel Prev Button */}
+        <button
+          type="button"
+          onClick={handlePrev}
+          aria-label="Previous product view"
+          className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/95 hover:bg-white text-slate-700 shadow-md border border-slate-200 transition-all hover:scale-110 active:scale-95 z-20"
+        >
+          <ChevronLeft size={16} />
+        </button>
+
+        {/* Carousel Next Button */}
+        <button
+          type="button"
+          onClick={handleNext}
+          aria-label="Next product view"
+          className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/95 hover:bg-white text-slate-700 shadow-md border border-slate-200 transition-all hover:scale-110 active:scale-95 z-20"
+        >
+          <ChevronRight size={16} />
+        </button>
+      </div>
+
+      {/* Carousel Bottom Dot/Pill Selector */}
+      <div className="pt-2 px-1 flex items-center justify-center gap-2 shrink-0 border-t border-slate-200/60 mt-2">
+        {images.map((img, idx) => {
+          const isSelected = currentIndex === idx;
+          const label = img.toLowerCase().includes("top") ? "Top View" : img.toLowerCase().includes("bottom") ? "Bottom View" : `View ${idx + 1}`;
+          return (
+            <button
+              key={img}
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setCurrentIndex(idx);
+              }}
+              aria-label={`Jump to ${label}`}
+              className={`px-3 py-1 rounded-lg text-[10px] font-bold transition-all flex items-center gap-1.5 ${
+                isSelected
+                  ? "bg-sky-600 text-white shadow-xs scale-105"
+                  : "bg-white text-slate-600 hover:bg-slate-100 border border-slate-200"
+              }`}
+            >
+              <span className={`w-1.5 h-1.5 rounded-full ${isSelected ? "bg-white" : "bg-slate-400"}`} />
+              <span>{label}</span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 // Subcomponent: Wide & Prominent Active Product Workstation (Left Column)
 function ActiveProductWorkstation({
   activeProduct,
@@ -245,51 +418,48 @@ function ActiveProductWorkstation({
   const isFlagship = activeProduct.id === 5;
   const isRailway = activeProduct.id === 2;
 
+  const productImages = activeProduct.images && activeProduct.images.length > 0
+    ? activeProduct.images
+    : [activeProduct.image];
+
   return (
     <div className="bg-white rounded-3xl p-5 sm:p-7 lg:p-8 border border-slate-200/90 shadow-xl relative overflow-hidden flex flex-col justify-between h-auto lg:h-[560px] xl:h-[580px]">
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 h-full">
         
         {/* Sub-Col 1: High-Impact Visual Box (Left side inside Workstation) */}
-        <div className="md:col-span-5 flex flex-col justify-between h-[280px] md:h-full">
-          <div className="relative w-full h-full rounded-2xl overflow-hidden bg-slate-100 border border-slate-200/80 shadow-inner group">
-            <Image
-              src={activeProduct.image}
-              alt={activeProduct.title}
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 40vw"
-              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent pointer-events-none" />
-
-            {/* Top Badges Bar inside Image */}
-            <div className="absolute top-3 inset-x-3 flex items-center justify-between gap-2 z-10 pointer-events-none">
-              <span className="bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-lg text-[10px] font-extrabold text-slate-800 shadow-sm uppercase tracking-wider border border-slate-200/70 truncate max-w-[55%]">
-                {activeProduct.category}
+        <div className="md:col-span-5 flex flex-col justify-between h-[360px] sm:h-[400px] md:h-full gap-3">
+          {/* Top Badges Bar (Cleanly placed above image container) */}
+          <div className="flex items-center justify-between gap-2 shrink-0">
+            <span className="bg-slate-100 text-slate-800 px-2.5 py-1 rounded-lg text-[10px] font-extrabold uppercase tracking-wider border border-slate-200/80 truncate max-w-[60%]">
+              {activeProduct.category}
+            </span>
+            {isFlagship ? (
+              <span className="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider shadow-sm flex items-center gap-1 shrink-0">
+                <Sparkles size={11} />
+                Flagship
               </span>
-              {isFlagship ? (
-                <span className="bg-gradient-to-r from-amber-500 to-orange-500 text-white px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider shadow-md flex items-center gap-1 shrink-0">
-                  <Sparkles size={11} />
-                  Flagship
-                </span>
-              ) : isRailway ? (
-                <span className="bg-emerald-600 text-white px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-md shrink-0">
-                  EN 15085-2
-                </span>
-              ) : (
-                <span className="bg-slate-900/85 backdrop-blur-md text-slate-200 px-2.5 py-1 rounded-lg text-[10px] font-semibold border border-white/10 shrink-0">
-                  {activeProduct.tag}
-                </span>
-              )}
-            </div>
+            ) : isRailway ? (
+              <span className="bg-emerald-600 text-white px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider shadow-sm shrink-0">
+                EN 15085-2
+              </span>
+            ) : (
+              <span className="bg-slate-800 text-slate-200 px-2.5 py-1 rounded-lg text-[10px] font-semibold shrink-0">
+                {activeProduct.tag}
+              </span>
+            )}
+          </div>
 
-            {/* Bottom Parameter Pill inside Image */}
-            <div className="absolute bottom-3 inset-x-3 pointer-events-none z-10">
-              <div className="bg-slate-950/85 backdrop-blur-md px-3 py-1.5 rounded-xl text-xs text-white font-mono flex items-center gap-2 border border-white/15 shadow-lg truncate">
-                <Cpu size={14} className="text-sky-400 shrink-0" />
-                <span className="truncate">{activeProduct.specs[0]?.label}: <strong>{activeProduct.specs[0]?.value}</strong></span>
-              </div>
-            </div>
+          {/* Product Carousel Frame */}
+          <ProductImageCarousel
+            images={productImages}
+            title={activeProduct.title}
+            containerClassName="flex-1 min-h-0"
+          />
+
+          {/* Bottom Parameter Bar (Cleanly placed below image container) */}
+          <div className="bg-slate-900 px-3.5 py-2 rounded-xl text-xs text-white font-mono flex items-center gap-2 shadow-sm border border-slate-800 shrink-0">
+            <Cpu size={14} className="text-sky-400 shrink-0" />
+            <span className="truncate">{activeProduct.specs[0]?.label}: <strong className="text-white font-bold">{activeProduct.specs[0]?.value}</strong></span>
           </div>
         </div>
 
@@ -426,8 +596,8 @@ function ProductSelectorList({
               )}
 
               {/* Thumbnail */}
-              <div className="relative w-16 h-16 sm:w-18 sm:h-18 rounded-xl overflow-hidden shrink-0 bg-slate-100 border border-slate-200/80">
-                <Image src={item.image} alt={item.title} fill sizes="72px" className="object-cover" />
+              <div className="relative w-16 h-16 sm:w-18 sm:h-18 rounded-xl overflow-hidden shrink-0 bg-slate-50 border border-slate-200/80 p-1">
+                <Image src={item.image} alt={item.title} fill sizes="72px" className="object-contain" />
               </div>
 
               {/* Meta Info */}
@@ -436,6 +606,11 @@ function ProductSelectorList({
                   <span className="text-[9px] font-bold text-sky-700 bg-sky-50 px-1.5 py-0.2 rounded uppercase">
                     {item.category}
                   </span>
+                  {item.images && item.images.length > 1 && (
+                    <span className="text-[8px] font-bold text-slate-600 bg-slate-100 px-1.5 py-0.2 rounded uppercase">
+                      2 Views
+                    </span>
+                  )}
                   {isFlagship && (
                     <span className="text-[8px] font-black text-amber-700 bg-amber-100 px-1.5 py-0.2 rounded uppercase flex items-center gap-0.5">
                       <Sparkles size={9} />
@@ -479,6 +654,10 @@ function ProductDetailModal({
   product: Product;
   onClose: () => void;
 }) {
+  const modalImages = product.images && product.images.length > 0
+    ? product.images
+    : [product.image];
+
   // Lock body scroll and handle Escape key
   useEffect(() => {
     const originalOverflow = document.body.style.overflow;
@@ -550,17 +729,20 @@ function ProductDetailModal({
           
           {/* Visual + Quick Overview */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
-            <div className="md:col-span-5 relative h-64 sm:h-72 w-full rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 shadow-inner">
-              <Image
-                src={product.image}
-                alt={product.title}
-                fill
-                sizes="(max-width: 768px) 100vw, 40vw"
-                className="object-cover"
-              />
-              <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-lg text-xs font-bold text-slate-800 shadow-sm">
-                {product.tag}
+            <div className="md:col-span-5 flex flex-col gap-2">
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-xs font-extrabold uppercase text-slate-400 tracking-wider">
+                  Component Photography
+                </span>
+                <span className="bg-slate-100 text-slate-800 text-[10px] font-bold px-2.5 py-0.5 rounded-md border border-slate-200">
+                  {product.tag}
+                </span>
               </div>
+              <ProductImageCarousel
+                images={modalImages}
+                title={product.title}
+                containerClassName="h-72 sm:h-80 w-full"
+              />
             </div>
             <div className="md:col-span-7 flex flex-col justify-between h-full space-y-4">
               <div>
@@ -785,6 +967,7 @@ export default function ServicesPortfolio() {
             {/* Left Column: Wide & Compact Product Inspector Workstation */}
             <div className="lg:col-span-8">
               <ActiveProductWorkstation
+                key={activeInspectorProduct.id}
                 activeProduct={activeInspectorProduct}
                 onOpenModal={(p) => setModalProduct(p)}
               />
@@ -821,6 +1004,7 @@ export default function ServicesPortfolio() {
       <AnimatePresence>
         {modalProduct && (
           <ProductDetailModal
+            key={modalProduct.id}
             product={modalProduct}
             onClose={() => setModalProduct(null)}
           />
