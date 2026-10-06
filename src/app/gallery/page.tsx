@@ -4,11 +4,8 @@ import { SubpageHero } from "@/components/ui/SubpageHero";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Gallery | Narayana Industries",
-  description: "View our manufacturing facility, machinery, and products.",
-  verification: {
-    google: "PjyKxJb4BQdHK4kqMt1bHwGt7UMr0e1uY9wicjJUl38",
-  },
+  title: "Manufacturing Facility & Gallery",
+  description: "Tour the Narayana Industries facility, advanced machinery, CNC workshops, and manufactured components.",
 };
 
 export default function GalleryPage() {

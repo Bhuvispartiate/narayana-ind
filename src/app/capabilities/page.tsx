@@ -4,11 +4,8 @@ import { SubpageHero } from "@/components/ui/SubpageHero";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Capabilities & Infrastructure | Narayana Industries",
-  description: "Explore our heavy fabrication and precision CNC machining infrastructure.",
-  verification: {
-    google: "PjyKxJb4BQdHK4kqMt1bHwGt7UMr0e1uY9wicjJUl38",
-  },
+  title: "Capabilities & Infrastructure",
+  description: "Explore Narayana Industries' heavy fabrication, welding robotics, and precision CNC machining infrastructure.",
 };
 
 export default function CapabilitiesPage() {

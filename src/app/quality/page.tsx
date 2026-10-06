@@ -5,11 +5,8 @@ import { SubpageHero } from "@/components/ui/SubpageHero";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Quality Assurance & Certifications | Narayana Industries",
-  description: "ISO 9001:2015, EN 15085-2:2020+A1:2023 & ISO 3834-2:2021 certified manufacturing.",
-  verification: {
-    google: "PjyKxJb4BQdHK4kqMt1bHwGt7UMr0e1uY9wicjJUl38",
-  },
+  title: "Quality Assurance & Certifications",
+  description: "ISO 9001:2015, EN 15085-2:2020+A1:2023 & ISO 3834-2:2021 certified quality standards and testing facilities.",
 };
 
 export default function QualityPage() {

@@ -4,11 +4,8 @@ import { SubpageHero } from "@/components/ui/SubpageHero";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Products & Services | Narayana Industries",
-  description: "Our portfolio of heavy fabrication, precision machining, and specialized services.",
-  verification: {
-    google: "PjyKxJb4BQdHK4kqMt1bHwGt7UMr0e1uY9wicjJUl38",
-  },
+  title: "Products & Services",
+  description: "Comprehensive portfolio of precision machined parts, railway air spring metal components, and heavy engineering solutions.",
 };
 
 export default function ProductsPage() {

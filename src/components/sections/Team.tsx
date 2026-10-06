@@ -5,15 +5,13 @@ import { User } from "lucide-react";
 import Image from "next/image";
 
 const teamMembers = [
+  { name: "Mr. Narayana S", role: "Founder", image: "/images/ProfileImages/Founder Narayana S.jpg" },
   { name: "Mr. Sekar N", role: "Director / Partner", image: "/images/ProfileImages/nSekar.jpg" },
   { name: "Mr. Manimurugan M", role: "General Manager Operations", image: "/images/ProfileImages/Mr. Manimurugan R.jpg" },
   { name: "Mr. Gnanasekar K", role: "General Manager Planning", image: "/images/ProfileImages/Gnanasekar.jpg" },
   { name: "Mr. Kesavan", role: "Supervisor", image: "/images/ProfileImages/Kesavan.jpg" },
   { name: "Mr. Santhosh S", role: "R&D Head", image: "/images/ProfileImages/Santhosh.jpg" },
   { name: "Mrs. Priyal Santhosh", role: "GM Marketing", image: "/images/ProfileImages/Priyal.jpg" },
-  { name: "Mrs. Rajeswari", role: "Accounting Manager", image: "/images/ProfileImages/Rajeswari.jpg" },
-  { name: "Mrs. Parameshwari", role: "Staff Accountant", image: "/images/ProfileImages/Prameshwari.jpg" },
-  { name: "Mrs. Devi", role: "Marketing Team ", image: "/images/ProfileImages/Devi.jpg" },
   { name: "QC Team", role: "Quality Control", image: "/images/ProfileImages/qc team.jpg", wide: true },
   { name: "Admin & HR Team", role: "Administration & Human Resources", image: "/images/ProfileImages/Admin & HR team.jpg", wide: true },
 ];

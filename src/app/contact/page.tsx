@@ -4,11 +4,8 @@ import { SubpageHero } from "@/components/ui/SubpageHero";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact Us | Narayana Industries",
-  description: "Get in touch for project inquiries, fabrication needs, and CNC machining.",
-  verification: {
-    google: "PjyKxJb4BQdHK4kqMt1bHwGt7UMr0e1uY9wicjJUl38",
-  },
+  title: "Contact Us",
+  description: "Get in touch with Narayana Industries for project inquiries, custom precision machining, and fabrication quotes.",
 };
 
 export default function ContactPage() {

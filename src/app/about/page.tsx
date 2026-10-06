@@ -5,11 +5,8 @@ import { SubpageHero } from "@/components/ui/SubpageHero";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Us | Narayana Industries",
-  description: "Learn about our 30+ year legacy in precision manufacturing.",
-  verification: {
-    google: "PjyKxJb4BQdHK4kqMt1bHwGt7UMr0e1uY9wicjJUl38",
-  },
+  title: "About Us",
+  description: "Learn about Narayana Industries' 30+ year legacy in precision manufacturing, leadership, and engineering excellence.",
 };
 
 export default function AboutPage() {

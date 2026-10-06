@@ -4,11 +4,8 @@ import { SubpageHero } from "@/components/ui/SubpageHero";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Leadership & Team | Narayana Industries",
-  description: "Meet the experts behind our precision engineering excellence.",
-  verification: {
-    google: "PjyKxJb4BQdHK4kqMt1bHwGt7UMr0e1uY9wicjJUl38",
-  },
+  title: "Leadership & Team",
+  description: "Meet the engineering experts and leadership behind Narayana Industries' precision manufacturing standards.",
 };
 
 export default function TeamPage() {

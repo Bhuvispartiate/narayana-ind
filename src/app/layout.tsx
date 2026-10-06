@@ -50,23 +50,48 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://narayanaindustries.niorg.in"),
-  title: "Narayana Industries | Precision Manufacturing & Engineering",
-  description: "Engineering Reliability. Precision Manufacturing. Trusted Quality. ISO 9001:2015, EN 15085-2:2020+A1:2023 & ISO 3834-2:2021 certified.",
+  applicationName: "Narayana Industries",
+  title: {
+    default: "Narayana Industries | Precision Manufacturing & Engineering",
+    template: "%s | Narayana Industries",
+  },
+  description: "Premier precision engineering and manufacturing company specializing in automotive & railway air spring metal components, heavy machining, and certified structural fabrication.",
+  keywords: [
+    "Narayana Industries",
+    "Precision Engineering",
+    "Precision Manufacturing",
+    "Railway Air Spring Components",
+    "Automotive Metal Components",
+    "Heavy Machining",
+    "Structural Fabrication",
+    "EN 15085 Certified",
+    "ISO 9001:2015",
+    "Precision Manufacturing India",
+  ],
   alternates: {
     canonical: "/",
   },
   openGraph: {
     title: "Narayana Industries | Precision Manufacturing & Engineering",
-    description: "Engineering Reliability. Precision Manufacturing. Trusted Quality. ISO 9001:2015, EN 15085-2:2020+A1:2023 & ISO 3834-2:2021 certified.",
+    description: "Premier precision engineering and manufacturing company specializing in automotive & railway air spring metal components, heavy machining, and certified structural fabrication.",
     url: "https://narayanaindustries.niorg.in",
     siteName: "Narayana Industries",
     locale: "en_IN",
     type: "website",
+    images: [
+      {
+        url: "/images/logo.png",
+        width: 800,
+        height: 600,
+        alt: "Narayana Industries Logo",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Narayana Industries | Precision Manufacturing & Engineering",
-    description: "Engineering Reliability. Precision Manufacturing. Trusted Quality. ISO-certified.",
+    description: "Premier precision engineering and manufacturing company specializing in automotive & railway air spring metal components, heavy machining, and certified structural fabrication.",
+    images: ["/images/logo.png"],
   },
   verification: {
     google: "PjyKxJb4BQdHK4kqMt1bHwGt7UMr0e1uY9wicjJUl38",
@@ -75,18 +100,36 @@ export const metadata: Metadata = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": "Narayana Industries",
-  "image": "https://narayanaindustries.niorg.in/images/logo.png",
-  "@id": "https://narayanaindustries.niorg.in",
-  "url": "https://narayanaindustries.niorg.in",
-  "telephone": "+919003950427",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Narayana Industries",
-    "addressLocality": "India",
-    "addressCountry": "IN"
-  }
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://narayanaindustries.niorg.in/#website",
+      "url": "https://narayanaindustries.niorg.in",
+      "name": "Narayana Industries",
+      "alternateName": [
+        "Narayana Precision Engineering",
+        "Narayana Industries India",
+        "NI"
+      ],
+      "description": "Premier precision engineering and manufacturing company specializing in automotive and railway air spring metal components, heavy machining, and structural fabrication."
+    },
+    {
+      "@type": ["Organization", "LocalBusiness"],
+      "@id": "https://narayanaindustries.niorg.in/#organization",
+      "name": "Narayana Industries",
+      "url": "https://narayanaindustries.niorg.in",
+      "logo": "https://narayanaindustries.niorg.in/images/logo.png",
+      "image": "https://narayanaindustries.niorg.in/images/logo.png",
+      "description": "Premier precision engineering and manufacturing company specializing in automotive and railway air spring metal components, heavy machining, and certified structural fabrication.",
+      "telephone": "+919003950427",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Narayana Industries",
+        "addressLocality": "India",
+        "addressCountry": "IN"
+      }
+    }
+  ]
 };
 
 export default function RootLayout({

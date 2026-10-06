@@ -4,11 +4,8 @@ import { SubpageHero } from "@/components/ui/SubpageHero";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Our Customers | Narayana Industries",
-  description: "Trusted by industry leaders in railway, automotive, and power generation.",
-  verification: {
-    google: "PjyKxJb4BQdHK4kqMt1bHwGt7UMr0e1uY9wicjJUl38",
-  },
+  title: "Our Customers & Partners",
+  description: "Trusted by industry leaders in railway engineering, automotive OEM manufacturing, and power generation.",
 };
 
 export default function CustomersPage() {
