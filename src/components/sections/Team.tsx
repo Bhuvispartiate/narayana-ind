@@ -4,7 +4,7 @@ import { m } from "framer-motion";
 import { User } from "lucide-react";
 import Image from "next/image";
 
-const teamMembers = [
+const leadershipMembers = [
   { name: "Mr. Narayana S", role: "Founder", image: "/images/ProfileImages/Founder Narayana S.jpg" },
   { name: "Mr. Sekar N", role: "Director / Partner", image: "/images/ProfileImages/nSekar.jpg" },
   { name: "Mr. Manimurugan M", role: "General Manager Operations", image: "/images/ProfileImages/Mr. Manimurugan R.jpg" },
@@ -12,8 +12,11 @@ const teamMembers = [
   { name: "Mr. Kesavan", role: "Supervisor", image: "/images/ProfileImages/Kesavan.jpg" },
   { name: "Mr. Santhosh S", role: "R&D Head", image: "/images/ProfileImages/Santhosh.jpg" },
   { name: "Mrs. Priyal Santhosh", role: "GM Marketing", image: "/images/ProfileImages/Priyal.jpg" },
-  { name: "QC Team", role: "Quality Control", image: "/images/ProfileImages/qc team.jpg", wide: true },
-  { name: "Admin & HR Team", role: "Administration & Human Resources", image: "/images/ProfileImages/Admin & HR team.jpg", wide: true },
+];
+
+const departmentTeams = [
+  { name: "QC Team", role: "Quality Control", image: "/images/ProfileImages/qc team.jpg" },
+  { name: "Admin & HR Team", role: "Administration & Human Resources", image: "/images/ProfileImages/Admin & HR team.jpg" },
 ];
 
 export default function Team() {
@@ -33,21 +36,18 @@ export default function Team() {
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-4 sm:gap-8">
-          {teamMembers.map((member, index) => (
+        {/* Executive & Leadership Members */}
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-8 items-start">
+          {leadershipMembers.map((member, index) => (
             <m.div
               key={member.name}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
-              className={`relative group rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-[box-shadow,border-color] duration-500 bg-slate-100 ${member.wide
-                  ? "w-full sm:w-full lg:w-[calc(40%-1rem)]"
-                  : "w-[calc(50%-0.5rem)] sm:w-[calc(50%-1rem)] lg:w-[calc(20%-1.6rem)]"
-                }`}
+              className="relative group rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-[box-shadow,border-color] duration-500 bg-slate-900 w-[calc(50%-0.5rem)] sm:w-[calc(50%-1rem)] lg:w-[calc(20%-1.6rem)]"
             >
-              {/* Large Portrait Image Placeholder or Actual Image */}
-              <div className={`${member.wide ? "aspect-video" : "aspect-[3/4]"} w-full bg-slate-200 relative overflow-hidden flex flex-col items-center justify-center`}>
+              <div className="aspect-[3/4] w-full bg-slate-800 relative overflow-hidden flex flex-col items-center justify-center">
                 {member.image ? (
                   <Image
                     src={member.image}
@@ -55,7 +55,7 @@ export default function Team() {
                     fill
                     priority={index < 4}
                     className="object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 20vw"
                   />
                 ) : (
                   <>
@@ -66,14 +66,50 @@ export default function Team() {
                   </>
                 )}
 
-                {/* Gradient Overlay for Text Readability - Only at the bottom */}
-                <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-slate-900/90 to-transparent pointer-events-none" />
+                {/* Gradient Overlay for Text Readability */}
+                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-slate-950/95 via-slate-900/60 to-transparent pointer-events-none" />
+
+                {/* Content Floating on Bottom */}
+                <div className="absolute inset-x-0 bottom-0 p-3 sm:p-5 flex flex-col items-center text-center transform translate-y-1 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                  <h3 className="text-xs sm:text-base lg:text-lg font-bold text-white mb-0.5 sm:mb-1">{member.name}</h3>
+                  <p className="text-[10px] sm:text-xs font-medium text-sky-400 leading-tight">{member.role}</p>
+                </div>
               </div>
 
-              {/* Content Floating on Bottom */}
-              <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-6 flex flex-col items-center text-center transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                <h3 className="text-xs sm:text-lg lg:text-xl font-bold text-white mb-0.5 sm:mb-1">{member.name}</h3>
-                <p className="text-[10px] sm:text-sm font-medium text-sky-400 mb-1 sm:mb-2 leading-tight">{member.role}</p>
+              {/* Accent Border Glow */}
+              <div className="absolute inset-0 border-2 border-transparent group-hover:border-sky-500/30 rounded-3xl transition-colors duration-500 pointer-events-none" />
+            </m.div>
+          ))}
+        </div>
+
+        {/* Operational & Department Teams */}
+        <div className="flex flex-wrap justify-center gap-4 sm:gap-8 mt-8 sm:mt-12 items-start">
+          {departmentTeams.map((team, index) => (
+            <m.div
+              key={team.name}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: 0.2 + index * 0.1, ease: "easeOut" }}
+              className="relative group rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-[box-shadow,border-color] duration-500 bg-slate-900 w-full sm:w-[calc(50%-1rem)] lg:w-[calc(40%-1rem)] max-w-xl"
+            >
+              <div className="aspect-[16/10] sm:aspect-[16/10] w-full bg-slate-800 relative overflow-hidden flex flex-col items-center justify-center">
+                <Image
+                  src={team.image}
+                  alt={team.name}
+                  fill
+                  className="object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 40vw"
+                />
+
+                {/* Gradient Overlay for Text Readability */}
+                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-slate-950/95 via-slate-900/60 to-transparent pointer-events-none" />
+
+                {/* Content Floating on Bottom */}
+                <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6 flex flex-col items-center text-center transform translate-y-1 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                  <h3 className="text-sm sm:text-xl font-bold text-white mb-0.5 sm:mb-1">{team.name}</h3>
+                  <p className="text-xs sm:text-sm font-medium text-sky-400 leading-tight">{team.role}</p>
+                </div>
               </div>
 
               {/* Accent Border Glow */}
