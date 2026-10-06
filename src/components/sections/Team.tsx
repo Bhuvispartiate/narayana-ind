@@ -100,12 +100,12 @@ export default function Team() {
                 )}
               </div>
 
-              {/* Gradient Card Body (Blur to White - Top to Bottom) */}
-              <div className="-mt-8 relative z-10 p-5 sm:p-6 text-center flex flex-col items-center justify-center bg-gradient-to-b from-white/50 via-white/90 to-white backdrop-blur-md flex-1 border-t border-white/40">
-                <h3 className="text-lg sm:text-xl font-bold text-slate-900 group-hover:text-sky-600 transition-colors duration-200">
+              {/* Compact Gradient Card Body (Blur to White - Top to Bottom) */}
+              <div className="-mt-6 relative z-10 py-3 px-4 sm:py-3.5 sm:px-4 text-center flex flex-col items-center justify-center bg-gradient-to-b from-white/50 via-white/90 to-white backdrop-blur-md flex-1 border-t border-white/40">
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 group-hover:text-sky-600 transition-colors duration-200 leading-snug">
                   {member.name}
                 </h3>
-                <p className="text-sm font-semibold text-sky-600 mt-1">
+                <p className="text-xs sm:text-sm font-semibold text-sky-600 mt-0.5 leading-tight">
                   {member.role}
                 </p>
               </div>
