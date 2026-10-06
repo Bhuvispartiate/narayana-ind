@@ -100,8 +100,8 @@ export default function Team() {
                 )}
               </div>
 
-              {/* Clean Card Body */}
-              <div className="p-5 sm:p-6 text-center flex flex-col items-center justify-center bg-white flex-1">
+              {/* Gradient Card Body (Blur to White - Top to Bottom) */}
+              <div className="-mt-8 relative z-10 p-5 sm:p-6 text-center flex flex-col items-center justify-center bg-gradient-to-b from-white/50 via-white/90 to-white backdrop-blur-md flex-1 border-t border-white/40">
                 <h3 className="text-lg sm:text-xl font-bold text-slate-900 group-hover:text-sky-600 transition-colors duration-200">
                   {member.name}
                 </h3>
